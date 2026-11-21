@@ -6,35 +6,62 @@
   <title>Text Field | DOOV Design System</title>
   <link rel="icon" type="image/svg+xml" href="../assets/brand/doov-symbol.svg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-gov-dynamic-subset.min.css">
-  <link rel="stylesheet" href="../assets/css/style.css?v=20261121144820">
-  <script src="../assets/js/layout.js?v=20261121144820"></script>
+  <link rel="stylesheet" href="../assets/css/style.css?v=20261121150157">
+  <script src="../assets/js/layout.js?v=20261121150157"></script>
 </head>
 <body>
 <main class="doc">
-<h1>Text Field</h1>
-  <p class="lead">한 줄 텍스트를 입력하는 필드입니다.</p>
+  <h1>Text Field</h1>
+  <p class="lead">한 줄 텍스트나 숫자를 입력합니다.</p>
   <div class="doc-meta"><span class="status draft">Draft</span><span>Last updated 2026-11-21</span></div>
 
-  <h2>Overview</h2>
-  <div class="placeholder">용도 및 적용 시점 작성 예정</div>
-
-  <h2>Anatomy</h2>
-  <div class="placeholder">구성 요소 정의 예정</div>
+  <h2>Preview</h2>
+  <div class="preview col">
+<div class="dds-field" style="width:280px">
+  <label for="tf1">신뢰도 기준</label>
+  <div class="dds-input"><input id="tf1" value="0.50"><span class="unit">score</span></div>
+  <span class="help">0과 1 사이 값을 입력하세요.</span>
+</div>
+<div class="dds-field" style="width:280px">
+  <label for="tf2">모델 이름</label>
+  <div class="dds-input is-error"><input id="tf2" value="dino_anomaly v2"></div>
+  <span class="error">영문, 숫자, 하이픈만 쓸 수 있어요.</span>
+</div>
+<div class="dds-field" style="width:280px">
+  <label for="tf3">작업자</label>
+  <div class="dds-input is-disabled"><input id="tf3" value="admin" disabled></div>
+</div>
+  </div>
 
   <h2>Variants</h2>
-  <div class="placeholder">유형별 명세 작성 예정</div>
+  <table>
+    <thead><tr><th>종류</th><th>쓰임</th></tr></thead>
+    <tbody><tr><td>Default</td><td></td></tr><tr><td>Focus</td><td>Purple 테두리 + 연한 링</td></tr><tr><td>Error</td><td>빨간 테두리 + 오류 문구 (14px)</td></tr><tr><td>Disabled</td><td>회색 면</td></tr><tr><td>With unit</td><td>단위를 오른쪽에 표시</td></tr></tbody>
+  </table>
 
-  <h2>States</h2>
-  <div class="placeholder">상태별(Default, Hover, Pressed, Disabled 등) 명세 작성 예정</div>
+  <h2>Specs</h2>
+  <table>
+    <thead><tr><th>항목</th><th>값</th><th>토큰</th></tr></thead>
+    <tbody><tr><td>높이</td><td>40px (Small 32px)</td><td><code>--control-md / sm</code></td></tr><tr><td>모서리</td><td>12px</td><td><code>--radius-md</code></td></tr><tr><td>테두리</td><td>1px · 입력창 전용 대비 4.5:1</td><td><code>--color-border-input</code></td></tr><tr><td>입력 글자</td><td>16px · 400</td><td><code>--font-size-body</code></td></tr><tr><td>라벨</td><td>14px · 600, 입력창과 6px 간격</td><td><code>--font-size-secondary</code></td></tr><tr><td>도움말 / 오류</td><td>12px / 14px</td><td><code>--font-size-caption / secondary</code></td></tr></tbody>
+  </table>
 
-  <h2>Props</h2>
-  <div class="placeholder">속성 명세 작성 예정</div>
+  <h2>Usage</h2>
+  <ul>
+    <li>라벨은 항상 입력창 위에 둡니다. placeholder로 라벨을 대신하지 않습니다.</li>
+    <li>오류 문구는 무엇을 고치면 되는지 알려줍니다.</li>
+    <li>수치 입력에는 단위를 함께 표시합니다.</li>
+  </ul>
 
-  <h2>Usage Guidelines</h2>
-  <div class="placeholder">Do / Don't 기준 작성 예정</div>
+  <h2>Web</h2>
+  <p><code>tokens.css</code>와 <code>components.css</code>를 불러온 뒤 아래처럼 씁니다.</p>
+<pre><code>&lt;div class="dds-field"&gt;
+  &lt;label for="conf"&gt;신뢰도 기준&lt;/label&gt;
+  &lt;div class="dds-input"&gt;&lt;input id="conf" value="0.50"&gt;&lt;span class="unit"&gt;score&lt;/span&gt;&lt;/div&gt;
+  &lt;span class="help"&gt;0과 1 사이 값을 입력하세요.&lt;/span&gt;
+&lt;/div&gt;</code></pre>
 
-  <h2>Accessibility</h2>
-  <div class="placeholder">키보드 조작 및 대비 기준 작성 예정</div>
+  <h2>C# Desktop</h2>
+  <div class="placeholder">WPF / WinForms 중 구현 방식이 정해지면 작성합니다. 그 전까지는 위 Specs의 크기·색 토큰을 기준으로 구현합니다.</div>
 </main>
 </body>
 </html>

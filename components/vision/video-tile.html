@@ -6,35 +6,71 @@
   <title>Video Tile | DOOV Design System</title>
   <link rel="icon" type="image/svg+xml" href="../../assets/brand/doov-symbol.svg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-gov-dynamic-subset.min.css">
-  <link rel="stylesheet" href="../../assets/css/style.css?v=20261121144820">
-  <script src="../../assets/js/layout.js?v=20261121144820"></script>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=20261121150157">
+  <script src="../../assets/js/layout.js?v=20261121150157"></script>
 </head>
 <body>
 <main class="doc">
-<h1>Video Tile</h1>
-  <p class="lead">카메라 영상 또는 검사 이미지를 상태 정보와 함께 표시하는 타일입니다.</p>
+  <h1>Video Tile</h1>
+  <p class="lead">검사 이미지 한 장과 결과, 판정 버튼을 한 카드에 담습니다.</p>
   <div class="doc-meta"><span class="status draft">Draft</span><span>Last updated 2026-11-21</span></div>
 
-  <h2>Overview</h2>
-  <div class="placeholder">용도 및 적용 시점 작성 예정</div>
-
-  <h2>Anatomy</h2>
-  <div class="placeholder">구성 요소 정의 예정</div>
+  <h2>Preview</h2>
+  <div class="preview muted">
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%">
+  <div class="dds-tile is-selected">
+    <div class="tile-head"><div class="tile-title"><b>NO.1</b><span>1.png</span></div><span class="score">0.71</span></div>
+    <div class="dds-viewport"><div class="ph-xray"></div><div class="dds-bbox defect" style="left:10%;top:40%;width:16%;height:28%"><span class="dds-label">Crack <span class="conf">0.92</span></span></div></div>
+    <div class="dds-verdict"><button class="pass" aria-pressed="false">적합</button><button class="fail" aria-pressed="true">부적합</button><button class="hold" aria-pressed="false">보류</button></div>
+    <button class="dds-btn secondary block">상세보기</button>
+  </div>
+  <div class="dds-tile">
+    <div class="tile-head"><div class="tile-title"><b>NO.2</b><span>2.png</span></div><span class="dds-status analyzing">추론 중</span></div>
+    <div class="dds-viewport"><div class="ph-xray" style="opacity:.5"></div><div class="viewport-msg"><span class="dds-spinner"></span></div></div>
+    <div class="dds-verdict"><button class="pass" disabled>적합</button><button class="fail" disabled>부적합</button><button class="hold" disabled>보류</button></div>
+    <button class="dds-btn secondary block" disabled>상세보기</button>
+  </div>
+  <div class="dds-tile">
+    <div class="tile-head"><div class="tile-title"><b>NO.3</b><span>3.png</span></div><span class="dds-status">대기</span></div>
+    <div class="dds-viewport"><div class="viewport-msg">추론 대기</div></div>
+    <div class="dds-verdict"><button class="pass" disabled>적합</button><button class="fail" disabled>부적합</button><button class="hold" disabled>보류</button></div>
+    <button class="dds-btn secondary block" disabled>상세보기</button>
+  </div>
+</div>
+  </div>
 
   <h2>Variants</h2>
-  <div class="placeholder">유형별 명세 작성 예정</div>
+  <table>
+    <thead><tr><th>종류</th><th>쓰임</th></tr></thead>
+    <tbody><tr><td>결과</td><td>이미지 + 박스 + 점수, 판정 가능</td></tr><tr><td>추론 중</td><td>회전 표시, 판정 비활성</td></tr><tr><td>대기</td><td>"추론 대기" 문구, 판정 비활성</td></tr><tr><td>선택</td><td>Purple 테두리 2px</td></tr></tbody>
+  </table>
 
-  <h2>States</h2>
-  <div class="placeholder">상태별(Default, Hover, Pressed, Disabled 등) 명세 작성 예정</div>
+  <h2>Specs</h2>
+  <table>
+    <thead><tr><th>항목</th><th>값</th><th>토큰</th></tr></thead>
+    <tbody><tr><td>여백 / 간격</td><td>12px</td><td></td></tr><tr><td>모서리</td><td>16px (영상 12px)</td><td><code>--radius-lg / md</code></td></tr><tr><td>헤더</td><td>번호 14px · 600 / 파일명 12px / 점수 14px · 600 Purple</td><td></td></tr><tr><td>영상 영역</td><td>16:10, 모드와 관계없이 어두운 배경</td><td><code>--color-gray-95</code></td></tr><tr><td>하단</td><td>Verdict Button + 상세보기(Secondary, 꽉 채움)</td><td></td></tr></tbody>
+  </table>
 
-  <h2>Props</h2>
-  <div class="placeholder">속성 명세 작성 예정</div>
+  <h2>Usage</h2>
+  <ul>
+    <li>한 화면에 여러 장이 반복되므로 상세보기는 Primary가 아닌 Secondary로 둡니다.</li>
+    <li>점수 표시 기준(소수 자릿수, 색 기준값)은 모델 기준이 정해지면 확정합니다.</li>
+  </ul>
 
-  <h2>Usage Guidelines</h2>
-  <div class="placeholder">Do / Don't 기준 작성 예정</div>
+  <h2>Web</h2>
+  <p><code>tokens.css</code>와 <code>components.css</code>를 불러온 뒤 아래처럼 씁니다.</p>
+<pre><code>&lt;div class="dds-tile"&gt;
+  &lt;div class="tile-head"&gt;
+    &lt;div class="tile-title"&gt;&lt;b&gt;NO.1&lt;/b&gt;&lt;span&gt;1.png&lt;/span&gt;&lt;/div&gt;
+    &lt;span class="score"&gt;0.71&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="dds-viewport"&gt;&lt;img src="…"&gt;&lt;/div&gt;
+  &lt;div class="dds-verdict"&gt;…&lt;/div&gt;
+  &lt;button class="dds-btn secondary block"&gt;상세보기&lt;/button&gt;
+&lt;/div&gt;</code></pre>
 
-  <h2>Accessibility</h2>
-  <div class="placeholder">키보드 조작 및 대비 기준 작성 예정</div>
+  <h2>C# Desktop</h2>
+  <div class="placeholder">WPF / WinForms 중 구현 방식이 정해지면 작성합니다. 그 전까지는 위 Specs의 크기·색 토큰을 기준으로 구현합니다.</div>
 </main>
 </body>
 </html>

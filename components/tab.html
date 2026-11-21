@@ -6,35 +6,56 @@
   <title>Tab | DOOV Design System</title>
   <link rel="icon" type="image/svg+xml" href="../assets/brand/doov-symbol.svg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-gov-dynamic-subset.min.css">
-  <link rel="stylesheet" href="../assets/css/style.css?v=20261121144820">
-  <script src="../assets/js/layout.js?v=20261121144820"></script>
+  <link rel="stylesheet" href="../assets/css/style.css?v=20261121150157">
+  <script src="../assets/js/layout.js?v=20261121150157"></script>
 </head>
 <body>
 <main class="doc">
-<h1>Tab</h1>
-  <p class="lead">동일 맥락의 콘텐츠를 영역별로 전환합니다.</p>
+  <h1>Tab</h1>
+  <p class="lead">같은 화면 안에서 영역을 나눠 전환합니다.</p>
   <div class="doc-meta"><span class="status draft">Draft</span><span>Last updated 2026-11-21</span></div>
 
-  <h2>Overview</h2>
-  <div class="placeholder">용도 및 적용 시점 작성 예정</div>
-
-  <h2>Anatomy</h2>
-  <div class="placeholder">구성 요소 정의 예정</div>
+  <h2>Preview</h2>
+  <div class="preview col">
+<div class="dds-tabs line" role="tablist" style="width:100%">
+  <button class="dds-tab" role="tab" aria-selected="true">검사</button>
+  <button class="dds-tab" role="tab" aria-selected="false">이력</button>
+  <button class="dds-tab" role="tab" aria-selected="false">통계</button>
+</div>
+<div class="dds-tabs pill" role="tablist">
+  <button class="dds-tab" role="tab" aria-selected="true">검사</button>
+  <button class="dds-tab" role="tab" aria-selected="false">이력</button>
+  <button class="dds-tab" role="tab" aria-selected="false">설정</button>
+</div>
+  </div>
 
   <h2>Variants</h2>
-  <div class="placeholder">유형별 명세 작성 예정</div>
+  <table>
+    <thead><tr><th>종류</th><th>쓰임</th></tr></thead>
+    <tbody><tr><td>Line</td><td>페이지 안의 영역 전환 (밑줄)</td></tr><tr><td>Pill</td><td>상단 헤더의 주요 메뉴 전환 (검사 / 이력)</td></tr></tbody>
+  </table>
 
-  <h2>States</h2>
-  <div class="placeholder">상태별(Default, Hover, Pressed, Disabled 등) 명세 작성 예정</div>
+  <h2>Specs</h2>
+  <table>
+    <thead><tr><th>항목</th><th>값</th><th>토큰</th></tr></thead>
+    <tbody><tr><td>Line 글자</td><td>16px · 600</td><td><code>--font-size-body</code></td></tr><tr><td>Line 밑줄</td><td>2px Purple 그라데이션</td><td><code>--gradient-primary</code></td></tr><tr><td>Pill 높이</td><td>32px</td><td><code>--control-sm</code></td></tr><tr><td>Pill 선택</td><td>Purple 그라데이션 + 흰 글자</td><td><code>--gradient-primary</code></td></tr><tr><td>미선택 글자</td><td></td><td><code>--color-text-assistive</code></td></tr></tbody>
+  </table>
 
-  <h2>Props</h2>
-  <div class="placeholder">속성 명세 작성 예정</div>
+  <h2>Usage</h2>
+  <ul>
+    <li>탭 이름은 명사 한두 단어로 짧게 씁니다.</li>
+    <li>탭이 많아 넘치면 Dropdown으로 바꿉니다.</li>
+  </ul>
 
-  <h2>Usage Guidelines</h2>
-  <div class="placeholder">Do / Don't 기준 작성 예정</div>
+  <h2>Web</h2>
+  <p><code>tokens.css</code>와 <code>components.css</code>를 불러온 뒤 아래처럼 씁니다.</p>
+<pre><code>&lt;div class="dds-tabs line" role="tablist"&gt;
+  &lt;button class="dds-tab" role="tab" aria-selected="true"&gt;검사&lt;/button&gt;
+  &lt;button class="dds-tab" role="tab" aria-selected="false"&gt;이력&lt;/button&gt;
+&lt;/div&gt;</code></pre>
 
-  <h2>Accessibility</h2>
-  <div class="placeholder">키보드 조작 및 대비 기준 작성 예정</div>
+  <h2>C# Desktop</h2>
+  <div class="placeholder">WPF / WinForms 중 구현 방식이 정해지면 작성합니다. 그 전까지는 위 Specs의 크기·색 토큰을 기준으로 구현합니다.</div>
 </main>
 </body>
 </html>

@@ -98,6 +98,28 @@
 .tabular-nums { font-variant-numeric: tabular-nums; }
 
 /* ═══════════════════════════════════════════════════════════
+   DOOV Design System — Shape · Size · Motion Tokens
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  /* RADIUS */
+  --radius-sm: 8px;    /* 체크박스, 작은 버튼, 썸네일 */
+  --radius-md: 12px;   /* 버튼, 입력창, 카드 내부 요소 */
+  --radius-lg: 16px;   /* 카드, 모달 */
+  --radius-xl: 28px;   /* 대형 카드 */
+  --radius-full: 999px;
+
+  /* CONTROL HEIGHT — 버튼·입력창·드롭다운 공통 */
+  --control-sm: 32px;
+  --control-md: 40px;  /* 기본 */
+  --control-lg: 48px;
+
+  /* MOTION */
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --duration-fast: 0.15s;
+  --duration-base: 0.25s;
+}
+
+/* ═══════════════════════════════════════════════════════════
    DOOV Design System — Color Tokens
    KRDS 색상 체계(13단계 명도, 매직넘버 대비 규칙, 시맨틱 매핑)를 참고한 DOOV 전용 체계입니다.
    - Primary: DOOV Purple — UI의 유일한 포인트 컬러
@@ -321,8 +343,9 @@
 /* Gradient · Shadow — Purple 계열만. 배경은 흰색을 유지하고 그라데이션은 버튼·아이콘·제목 등 하위 요소에만 사용 */
 :root,
 .theme-light {
-  --gradient-primary: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-primary-70) 100%);        /* 주요 버튼 (흰 텍스트 4.5:1 이상) */
-  --gradient-primary-hover: linear-gradient(135deg, var(--color-primary-60) 0%, var(--color-primary-80) 100%);
+  --gradient-primary: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-primary-60) 100%);        /* 채움 (버튼 hover, 아이콘 타일) — 흰 텍스트 4.5:1 이상 */
+  --gradient-primary-hover: linear-gradient(135deg, var(--color-primary-60) 0%, var(--color-primary-70) 100%);  /* 채움 pressed */
+  --gradient-primary-border: linear-gradient(135deg, var(--color-primary-40) 0%, var(--color-primary-60) 100%); /* 주요 버튼 테두리 — 배경 대비 3:1 이상 */
   --gradient-text: linear-gradient(100deg, var(--color-primary-80) 0%, var(--color-primary-60) 55%, var(--color-primary-50) 100%); /* 대형 제목 강조 */
   --gradient-aurora:
     radial-gradient(55% 70% at 12% 0%, color-mix(in srgb, var(--color-primary-20) 75%, transparent) 0%, transparent 70%),
@@ -333,12 +356,13 @@
   --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04), 0 1px 3px rgba(16, 24, 40, 0.06);
   --shadow-md: 0 4px 12px -2px rgba(16, 24, 40, 0.08), 0 2px 4px -2px rgba(16, 24, 40, 0.04);
   --shadow-lg: 0 16px 40px -12px rgba(16, 24, 40, 0.18);
-  --shadow-primary: 0 8px 24px -8px color-mix(in srgb, var(--color-primary-50) 60%, transparent);
+  --shadow-primary: 0 4px 12px -6px color-mix(in srgb, var(--color-primary-50) 35%, transparent);
 }
 :root[data-theme='dark'],
 .theme-dark {
-  --gradient-primary: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-primary-70) 100%);
-  --gradient-primary-hover: linear-gradient(135deg, var(--color-primary-60) 0%, var(--color-primary-80) 100%);
+  --gradient-primary: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-primary-60) 100%);
+  --gradient-primary-hover: linear-gradient(135deg, var(--color-primary-60) 0%, var(--color-primary-70) 100%);
+  --gradient-primary-border: linear-gradient(135deg, var(--color-primary-30) 0%, var(--color-primary-50) 100%);
   --gradient-text: linear-gradient(100deg, var(--color-gray-0) 0%, var(--color-primary-20) 60%, var(--color-primary-30) 100%);
   --gradient-aurora:
     radial-gradient(55% 70% at 12% 0%, color-mix(in srgb, var(--color-primary-70) 55%, transparent) 0%, transparent 70%),
@@ -349,5 +373,5 @@
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 6px 16px -4px rgba(0, 0, 0, 0.5);
   --shadow-lg: 0 20px 48px -12px rgba(0, 0, 0, 0.6);
-  --shadow-primary: 0 8px 28px -8px color-mix(in srgb, var(--color-primary-50) 70%, transparent);
+  --shadow-primary: 0 4px 14px -6px color-mix(in srgb, var(--color-primary-50) 45%, transparent);
 }

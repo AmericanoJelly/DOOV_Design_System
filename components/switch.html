@@ -6,35 +6,47 @@
   <title>Switch | DOOV Design System</title>
   <link rel="icon" type="image/svg+xml" href="../assets/brand/doov-symbol.svg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-gov-dynamic-subset.min.css">
-  <link rel="stylesheet" href="../assets/css/style.css?v=20261121144820">
-  <script src="../assets/js/layout.js?v=20261121144820"></script>
+  <link rel="stylesheet" href="../assets/css/style.css?v=20261121150157">
+  <script src="../assets/js/layout.js?v=20261121150157"></script>
 </head>
 <body>
 <main class="doc">
-<h1>Switch</h1>
-  <p class="lead">설정을 즉시 활성화하거나 비활성화하는 컨트롤입니다.</p>
+  <h1>Switch</h1>
+  <p class="lead">설정을 바로 켜고 끌 때 씁니다. 누르는 즉시 적용됩니다.</p>
   <div class="doc-meta"><span class="status draft">Draft</span><span>Last updated 2026-11-21</span></div>
 
-  <h2>Overview</h2>
-  <div class="placeholder">용도 및 적용 시점 작성 예정</div>
-
-  <h2>Anatomy</h2>
-  <div class="placeholder">구성 요소 정의 예정</div>
+  <h2>Preview</h2>
+  <div class="preview">
+<div class="row">
+  <label class="dds-switch"><input type="checkbox" checked> 자동 추론</label>
+  <label class="dds-switch"><input type="checkbox"> 히트맵 표시</label>
+  <label class="dds-switch"><input type="checkbox" disabled> 비활성</label>
+</div>
+  </div>
 
   <h2>Variants</h2>
-  <div class="placeholder">유형별 명세 작성 예정</div>
+  <table>
+    <thead><tr><th>종류</th><th>쓰임</th></tr></thead>
+    <tbody><tr><td>Off</td><td>회색 트랙</td></tr><tr><td>On</td><td>Purple 트랙</td></tr><tr><td>Disabled</td><td></td></tr></tbody>
+  </table>
 
-  <h2>States</h2>
-  <div class="placeholder">상태별(Default, Hover, Pressed, Disabled 등) 명세 작성 예정</div>
+  <h2>Specs</h2>
+  <table>
+    <thead><tr><th>항목</th><th>값</th><th>토큰</th></tr></thead>
+    <tbody><tr><td>크기</td><td>40 × 24px (손잡이 20px)</td><td></td></tr><tr><td>트랙 Off / On</td><td>gray-30 / Purple</td><td><code>--color-gray-30</code> · <code>--color-button-primary-fill</code></td></tr><tr><td>전환</td><td>0.25s</td><td><code>--duration-base</code></td></tr></tbody>
+  </table>
 
-  <h2>Props</h2>
-  <div class="placeholder">속성 명세 작성 예정</div>
+  <h2>Usage</h2>
+  <ul>
+    <li>저장 버튼이 따로 있는 폼에서는 Checkbox를 씁니다.</li>
+  </ul>
 
-  <h2>Usage Guidelines</h2>
-  <div class="placeholder">Do / Don't 기준 작성 예정</div>
+  <h2>Web</h2>
+  <p><code>tokens.css</code>와 <code>components.css</code>를 불러온 뒤 아래처럼 씁니다.</p>
+<pre><code>&lt;label class="dds-switch"&gt;&lt;input type="checkbox" checked&gt; 자동 추론&lt;/label&gt;</code></pre>
 
-  <h2>Accessibility</h2>
-  <div class="placeholder">키보드 조작 및 대비 기준 작성 예정</div>
+  <h2>C# Desktop</h2>
+  <div class="placeholder">WPF / WinForms 중 구현 방식이 정해지면 작성합니다. 그 전까지는 위 Specs의 크기·색 토큰을 기준으로 구현합니다.</div>
 </main>
 </body>
 </html>

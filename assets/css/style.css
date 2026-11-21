@@ -5,16 +5,12 @@
    - 스타일 원칙: 흰 배경 + 쿨 그레이, 컬러는 Purple 하나만 포인트로.
      배경은 흰색, Purple 그라데이션은 버튼·아이콘·제목 등 하위 요소에만. 유리 질감·부드러운 그림자로 세련되게.
    ───────────────────────────────────────────── */
-@import url('tokens.css?v=20261121144820');
+@import url('tokens.css?v=20261121150157');
+@import url('components.css?v=20261121150157');
 
 :root {
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace; /* 코드 예제 전용 */
 
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 28px;
-  --ease: cubic-bezier(0.2, 0, 0, 1);
 
   --header-h: 64px;
   --sidebar-w: 272px;
@@ -215,17 +211,17 @@ table, .tabular-nums, time { font-variant-numeric: tabular-nums; }
 .doc .lead { color: var(--color-text-subtle); }
 
 /* 표: 세로선 없이 가로 구분선만 · 헤더 14/600 · 데이터 14/400 */
-.doc table {
+.doc table:not(.dds-table) {
   width: 100%;
   margin: 16px 0 24px;
   border-collapse: collapse;
   font-size: var(--font-size-secondary);
 }
-.doc th, .doc td { padding: 12px 14px; border-bottom: 1px solid var(--color-divider); text-align: left; vertical-align: top; }
-.doc th { color: var(--color-text-assistive); border-bottom-color: var(--color-border); }
-.doc td { color: var(--color-text-basic); }
-.doc tbody th { color: var(--color-text-bolder); border-bottom-color: var(--color-divider); }
-.doc td.num, .doc th.num { text-align: right; }
+.doc table:not(.dds-table) th, .doc table:not(.dds-table) td { padding: 12px 14px; border-bottom: 1px solid var(--color-divider); text-align: left; vertical-align: top; }
+.doc table:not(.dds-table) th { color: var(--color-text-assistive); border-bottom-color: var(--color-border); }
+.doc table:not(.dds-table) td { color: var(--color-text-basic); }
+.doc table:not(.dds-table) tbody th { color: var(--color-text-bolder); border-bottom-color: var(--color-divider); }
+.doc table:not(.dds-table) .num { text-align: right; }
 .doc code {
   padding: 2px 6px;
   border-radius: 6px;
@@ -423,21 +419,22 @@ a.card:hover { transform: translateY(-2px); box-shadow: inset 0 0 0 1px var(--co
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 22px;
-  border: 0;
+  padding: 11px 22px;
+  border: 1.5px solid transparent;
   border-radius: 999px;
   font-size: var(--font-size-secondary);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-text-inverse-static);
+  color: var(--color-text-primary);
   text-decoration: none;
-  background: var(--gradient-primary);
-  box-shadow: var(--shadow-primary);
-  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+  background:
+    linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
+    var(--gradient-primary-border) border-box;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), color 0.2s var(--ease);
 }
-.btn:hover { color: var(--color-text-inverse-static); background: var(--gradient-primary-hover); transform: translateY(-1px); }
-.btn:active { transform: none; }
-.btn.secondary { color: var(--color-text-basic); background: var(--color-surface); box-shadow: inset 0 0 0 1px var(--color-border), var(--shadow-sm); }
-.btn.secondary:hover { color: var(--color-text-bolder); background: var(--color-surface); box-shadow: inset 0 0 0 1px var(--color-border-input), var(--shadow-md); }
+.btn:hover { color: var(--color-text-inverse-static); background: var(--gradient-primary) border-box; box-shadow: var(--shadow-primary); transform: translateY(-1px); }
+.btn:active { background: var(--gradient-primary-hover) border-box; transform: none; }
+.btn.secondary { border-color: transparent; color: var(--color-text-basic); background: var(--color-surface); box-shadow: inset 0 0 0 1px var(--color-border); }
+.btn.secondary:hover { color: var(--color-text-bolder); background: var(--color-action-hover); box-shadow: inset 0 0 0 1px var(--color-border-input); }
 .btn .arrow { transition: transform 0.2s var(--ease); }
 .btn:hover .arrow { transform: translateX(2px); }
 @media (prefers-reduced-motion: reduce) { .btn, .btn:hover, .btn .arrow, .btn:hover .arrow { transform: none; transition: none; } }
@@ -754,7 +751,7 @@ a.card:hover { transform: translateY(-2px); box-shadow: inset 0 0 0 1px var(--co
 .mock .vbtn.fail { color: var(--color-danger-text); }
 .mock .vbtn.hold { color: var(--color-text-subtle); }
 /* 주요 버튼: 퍼플 채움 (Light · Dark 공통) */
-.mock .primary-btn { display: block; width: 100%; padding: 10px 0; border: 0; border-radius: 10px; font-size: var(--font-size-secondary); font-weight: var(--font-weight-semibold); color: var(--color-text-inverse-static); background: var(--gradient-primary); box-shadow: var(--shadow-primary); }
+.mock .primary-btn { display: block; width: 100%; padding: 10px 0; border: 0; border-radius: 10px; font-size: var(--font-size-secondary); font-weight: var(--font-weight-semibold); border: 1.5px solid transparent; color: var(--color-text-primary); background: linear-gradient(var(--color-surface), var(--color-surface)) padding-box, var(--gradient-primary-border) border-box; }
 .mock .input { margin-bottom: 10px; padding: 8px 12px; border: 1px solid var(--color-border-input); border-radius: 10px; font-size: var(--font-size-secondary); color: var(--color-text-assistive); background: var(--color-surface-elevated); }
 .mock .meta { display: flex; gap: 12px; margin-top: 12px; font-size: var(--font-size-caption); color: var(--color-text-assistive); }
 .mock .meta i { display: inline-block; width: 8px; height: 8px; margin-right: 4px; border-radius: 50%; }
@@ -804,3 +801,26 @@ a.card:hover { transform: translateY(-2px); box-shadow: inset 0 0 0 1px var(--co
 .doc .card.feature h4 { margin: 0 0 6px; }
 .doc .card.feature p { margin: 0; font-size: var(--font-size-secondary); color: var(--color-text-subtle); }
 @media (prefers-reduced-motion: reduce) { .card.feature:hover { transform: none; } }
+
+/* ─────────────────────────────────────────────
+   Components 문서: 미리보기 영역
+   ───────────────────────────────────────────── */
+.preview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0 8px;
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: inset 0 0 0 1px var(--color-border-light), var(--shadow-sm);
+}
+.preview.col { flex-direction: column; align-items: stretch; }
+.preview.center { justify-content: center; }
+.preview.muted { background: var(--gradient-surface); }
+.preview .row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.preview .note { width: 100%; margin: 0; font-size: var(--font-size-caption); color: var(--color-text-assistive); }
+.preview + .caption { margin-top: 0; }
+/* 검사 이미지 자리 (문서 시연용) */
+.ph-xray { position: absolute; inset: 0; background: linear-gradient(180deg, var(--color-gray-90) 0%, var(--color-gray-60) 30%, var(--color-gray-20) 50%, var(--color-gray-60) 70%, var(--color-gray-90) 100%); }

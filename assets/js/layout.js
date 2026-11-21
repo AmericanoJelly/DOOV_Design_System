@@ -226,6 +226,11 @@ function build() {
 
 document.addEventListener('DOMContentLoaded', build);
 
+// 체크박스 '일부 선택' 상태 (HTML 속성으로는 지정 불가)
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.js-indeterminate').forEach((el) => { el.indeterminate = true; });
+});
+
 // ── 복사 버튼: <button class="copy-btn" data-copy="#대상ID"> ──
 document.addEventListener('click', async (e) => {
   const btn = e.target.closest('.copy-btn');

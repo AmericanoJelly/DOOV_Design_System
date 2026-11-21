@@ -6,35 +6,52 @@
   <title>Verdict Button | DOOV Design System</title>
   <link rel="icon" type="image/svg+xml" href="../../assets/brand/doov-symbol.svg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-gov-dynamic-subset.min.css">
-  <link rel="stylesheet" href="../../assets/css/style.css?v=20261121144820">
-  <script src="../../assets/js/layout.js?v=20261121144820"></script>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=20261121150157">
+  <script src="../../assets/js/layout.js?v=20261121150157"></script>
 </head>
 <body>
 <main class="doc">
-<h1>Verdict Button</h1>
-  <p class="lead">검사 결과를 적합, 부적합, 보류로 판정하는 버튼 그룹입니다.</p>
+  <h1>Verdict Button</h1>
+  <p class="lead">검사 결과를 적합 · 부적합 · 보류로 판정합니다.</p>
   <div class="doc-meta"><span class="status draft">Draft</span><span>Last updated 2026-11-21</span></div>
 
-  <h2>Overview</h2>
-  <div class="placeholder">용도 및 적용 시점 작성 예정</div>
-
-  <h2>Anatomy</h2>
-  <div class="placeholder">구성 요소 정의 예정</div>
+  <h2>Preview</h2>
+  <div class="preview col">
+<div class="dds-verdict" style="width:360px"><button class="pass" aria-pressed="false">적합</button><button class="fail" aria-pressed="false">부적합</button><button class="hold" aria-pressed="false">보류</button></div>
+<div class="dds-verdict" style="width:360px"><button class="pass" aria-pressed="true">적합</button><button class="fail" aria-pressed="false">부적합</button><button class="hold" aria-pressed="false">보류</button></div>
+<div class="dds-verdict" style="width:360px"><button class="pass" aria-pressed="false">적합</button><button class="fail" aria-pressed="true">부적합</button><button class="hold" aria-pressed="false">보류</button></div>
+<div class="dds-verdict" style="width:360px"><button class="pass" disabled>적합</button><button class="fail" disabled>부적합</button><button class="hold" disabled>보류</button></div>
+  </div>
 
   <h2>Variants</h2>
-  <div class="placeholder">유형별 명세 작성 예정</div>
+  <table>
+    <thead><tr><th>종류</th><th>쓰임</th></tr></thead>
+    <tbody><tr><td>미선택</td><td>흰 표면 + 상태색 테두리·글자</td></tr><tr><td>선택</td><td>상태색 채움 + 흰 글자</td></tr><tr><td>비활성</td><td>추론 전 — 회색</td></tr></tbody>
+  </table>
 
-  <h2>States</h2>
-  <div class="placeholder">상태별(Default, Hover, Pressed, Disabled 등) 명세 작성 예정</div>
+  <h2>Specs</h2>
+  <table>
+    <thead><tr><th>항목</th><th>값</th><th>토큰</th></tr></thead>
+    <tbody><tr><td>높이</td><td>40px</td><td><code>--control-md</code></td></tr><tr><td>간격</td><td>6px, 3칸 같은 너비</td><td></td></tr><tr><td>모서리</td><td>12px</td><td><code>--radius-md</code></td></tr><tr><td>글자</td><td>14px · 600</td><td><code>--font-size-secondary</code></td></tr><tr><td>적합 / 부적합 / 보류</td><td>Success / Danger / Gray</td><td><code>--color-success-50</code> · <code>--color-danger-50</code> · <code>--color-gray-60</code></td></tr></tbody>
+  </table>
 
-  <h2>Props</h2>
-  <div class="placeholder">속성 명세 작성 예정</div>
+  <h2>Usage</h2>
+  <ul>
+    <li>한 번에 하나만 선택됩니다.</li>
+    <li>적록 색각이상을 고려해 항상 글자를 함께 표시합니다.</li>
+    <li>추론이 끝나기 전에는 비활성으로 둡니다.</li>
+  </ul>
 
-  <h2>Usage Guidelines</h2>
-  <div class="placeholder">Do / Don't 기준 작성 예정</div>
+  <h2>Web</h2>
+  <p><code>tokens.css</code>와 <code>components.css</code>를 불러온 뒤 아래처럼 씁니다.</p>
+<pre><code>&lt;div class="dds-verdict"&gt;
+  &lt;button class="pass" aria-pressed="true"&gt;적합&lt;/button&gt;
+  &lt;button class="fail" aria-pressed="false"&gt;부적합&lt;/button&gt;
+  &lt;button class="hold" aria-pressed="false"&gt;보류&lt;/button&gt;
+&lt;/div&gt;</code></pre>
 
-  <h2>Accessibility</h2>
-  <div class="placeholder">키보드 조작 및 대비 기준 작성 예정</div>
+  <h2>C# Desktop</h2>
+  <div class="placeholder">WPF / WinForms 중 구현 방식이 정해지면 작성합니다. 그 전까지는 위 Specs의 크기·색 토큰을 기준으로 구현합니다.</div>
 </main>
 </body>
 </html>

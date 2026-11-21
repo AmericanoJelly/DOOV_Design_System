@@ -6,35 +6,47 @@
   <title>Thumbnail Strip | DOOV Design System</title>
   <link rel="icon" type="image/svg+xml" href="../../assets/brand/doov-symbol.svg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-gov-dynamic-subset.min.css">
-  <link rel="stylesheet" href="../../assets/css/style.css?v=20261121144820">
-  <script src="../../assets/js/layout.js?v=20261121144820"></script>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=20261121150157">
+  <script src="../../assets/js/layout.js?v=20261121150157"></script>
 </head>
 <body>
 <main class="doc">
-<h1>Thumbnail Strip</h1>
-  <p class="lead">검사 대상 이미지 목록을 탐색하는 썸네일 목록입니다.</p>
+  <h1>Thumbnail Strip</h1>
+  <p class="lead">검사 대상 이미지들을 한 줄로 보여주고 빠르게 이동합니다.</p>
   <div class="doc-meta"><span class="status draft">Draft</span><span>Last updated 2026-11-21</span></div>
 
-  <h2>Overview</h2>
-  <div class="placeholder">용도 및 적용 시점 작성 예정</div>
+  <h2>Preview</h2>
+  <div class="preview">
+<div class="dds-thumbs" style="width:100%">
+  <button class="dds-thumb fail is-selected"><span class="img"></span><span class="cap">NO.1 · 0.71</span></button>
+  <button class="dds-thumb pass"><span class="img"></span><span class="cap">NO.2 · 0.12</span></button>
+  <button class="dds-thumb hold"><span class="img"></span><span class="cap">NO.3 · –</span></button>
+  <button class="dds-thumb hold"><span class="img"></span><span class="cap">NO.4 · –</span></button>
+  <button class="dds-thumb hold"><span class="img"></span><span class="cap">NO.5 · –</span></button>
+</div>
+  </div>
 
-  <h2>Anatomy</h2>
-  <div class="placeholder">구성 요소 정의 예정</div>
+  <h2>Specs</h2>
+  <table>
+    <thead><tr><th>항목</th><th>값</th><th>토큰</th></tr></thead>
+    <tbody><tr><td>썸네일</td><td>72 × 52px · 모서리 8px</td><td><code>--radius-sm</code></td></tr><tr><td>상태 점</td><td>8px, 오른쪽 위</td><td><code>--color-success-icon</code> · <code>--color-danger-icon</code> · <code>--color-gray-40</code></td></tr><tr><td>캡션</td><td>12px · 자릿수 정렬</td><td><code>--font-size-caption</code></td></tr><tr><td>선택</td><td>Purple 테두리 2px + 캡션 Purple</td><td><code>--color-border-primary</code></td></tr><tr><td>간격</td><td>8px, 가로 스크롤</td><td></td></tr></tbody>
+  </table>
 
-  <h2>Variants</h2>
-  <div class="placeholder">유형별 명세 작성 예정</div>
+  <h2>Usage</h2>
+  <ul>
+    <li>키보드 ← → 로 이동할 수 있게 합니다.</li>
+    <li>점의 의미(적합/부적합/보류)는 근처 현황 영역에 글자로 함께 보여줍니다.</li>
+  </ul>
 
-  <h2>States</h2>
-  <div class="placeholder">상태별(Default, Hover, Pressed, Disabled 등) 명세 작성 예정</div>
+  <h2>Web</h2>
+  <p><code>tokens.css</code>와 <code>components.css</code>를 불러온 뒤 아래처럼 씁니다.</p>
+<pre><code>&lt;div class="dds-thumbs"&gt;
+  &lt;button class="dds-thumb fail is-selected"&gt;&lt;span class="img"&gt;&lt;/span&gt;&lt;span class="cap"&gt;NO.1 · 0.71&lt;/span&gt;&lt;/button&gt;
+  &lt;button class="dds-thumb pass"&gt;&lt;span class="img"&gt;&lt;/span&gt;&lt;span class="cap"&gt;NO.2 · 0.12&lt;/span&gt;&lt;/button&gt;
+&lt;/div&gt;</code></pre>
 
-  <h2>Props</h2>
-  <div class="placeholder">속성 명세 작성 예정</div>
-
-  <h2>Usage Guidelines</h2>
-  <div class="placeholder">Do / Don't 기준 작성 예정</div>
-
-  <h2>Accessibility</h2>
-  <div class="placeholder">키보드 조작 및 대비 기준 작성 예정</div>
+  <h2>C# Desktop</h2>
+  <div class="placeholder">WPF / WinForms 중 구현 방식이 정해지면 작성합니다. 그 전까지는 위 Specs의 크기·색 토큰을 기준으로 구현합니다.</div>
 </main>
 </body>
 </html>

@@ -6,8 +6,8 @@
   <title>Colors | DOOV Design System</title>
   <link rel="icon" type="image/svg+xml" href="../assets/brand/doov-symbol.svg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-gov-dynamic-subset.min.css">
-  <link rel="stylesheet" href="../assets/css/style.css?v=20261121144820">
-  <script src="../assets/js/layout.js?v=20261121144820"></script>
+  <link rel="stylesheet" href="../assets/css/style.css?v=20261121150157">
+  <script src="../assets/js/layout.js?v=20261121150157"></script>
 </head>
 <body>
 <main class="doc">
@@ -30,13 +30,12 @@
 - 화면은 흰 배경 + 쿨 그레이로 구성한다. 포인트 컬러는 DOOV Purple 하나만 사용한다.
 - Light 배경은 흰색(--color-bg)이다. 화면 전체를 회색으로 채우지 않는다.
 - 연한 보라 등 컬러 배경 면을 만들지 않는다. 로고의 Mint는 로고 전용이며 UI에 쓰지 않는다.
-- 주요 버튼: Purple 그라데이션 + 흰 텍스트 (--gradient-primary, --color-text-inverse-static). Light·Dark 공통.
+- 주요 버튼: 그라데이션 테두리 1.5px(--gradient-primary-border) + Purple 글자(--color-text-primary). hover 시 --gradient-primary로 채우고 글자는 흰색(--color-text-inverse-static). 퍼플 글로우 그림자를 기본 상태에 쓰지 않는다.
 - 보조 버튼: 회색 채움 + 기본 텍스트 (--color-button-secondary-fill, --color-text-basic).
 - 선택 상태: 회색 면(--color-action-selected) + Purple 텍스트(--color-text-primary). 세그먼트는 회색 트랙 위 밝은 칸(--color-surface-elevated).
 - 상태 표시: 상태색은 아이콘·점·라벨 텍스트에만 쓰고 배경은 회색 면을 유지한다.
 - 카드·패널: 흰 표면(--color-surface) + 얇은 테두리(--color-border-light) + 부드러운 그림자(--shadow-sm). 클릭 가능한 카드는 hover 시 translateY(-2px) + --shadow-md.
-- 페이지·섹션·히어로 배경은 흰색을 유지한다. 그라데이션은 Purple 계열 토큰만, 하위 요소에만 쓴다: 주요 버튼·아이콘 타일 --gradient-primary, 대형 제목 텍스트 --gradient-text, 카드 내부 배너·일러스트 --gradient-aurora.
-- 주요 버튼은 알약형(border-radius 999px) + --gradient-primary + --shadow-primary.
+- 페이지·섹션·히어로 배경은 흰색을 유지한다. 그라데이션은 Purple 계열 토큰만, 하위 요소에만 쓴다: 버튼 hover 채움·아이콘 타일 --gradient-primary, 주요 버튼 테두리 --gradient-primary-border, 대형 제목 텍스트 --gradient-text, 카드 내부 배너·일러스트 --gradient-aurora.
 - 헤더는 반투명 유리 질감(배경 72% + backdrop-filter: saturate(180%) blur(20px)).
 - 넉넉한 여백과 둥근 모서리(8 / 12 / 16 / 28px)를 사용한다. 표는 세로선 없이 가로 구분선만 사용한다.
 - 모션은 cubic-bezier(0.2, 0, 0, 1) 0.2~0.6s로 절제하고, prefers-reduced-motion에서는 끈다.
@@ -102,7 +101,7 @@
   <table>
     <thead><tr><th style="width:200px">요소</th><th>기준</th></tr></thead>
     <tbody>
-      <tr><td>주요 버튼</td><td>Purple 그라데이션(<code>--gradient-primary</code>) + 흰 텍스트, 알약형. Light·Dark 공통. 화면의 핵심 행동에 사용합니다.</td></tr>
+      <tr><td>주요 버튼</td><td>그라데이션 테두리(<code>--gradient-primary-border</code>) + Purple 글자. 마우스를 올리면 그라데이션(<code>--gradient-primary</code>)으로 채워집니다. Light·Dark 공통.</td></tr>
       <tr><td>보조 버튼</td><td>흰 표면 + 얇은 테두리, 또는 회색 채움(<code>button-secondary-fill</code>). 반복되는 행동과 판정 버튼에 사용합니다.</td></tr>
       <tr><td>선택 상태</td><td>회색 면(<code>action-selected</code>) + Purple 텍스트, 또는 세그먼트의 밝은 칸으로 표시합니다.</td></tr>
       <tr><td>카드 · 패널</td><td>흰 표면 + 얇은 테두리(<code>border-light</code>) + 부드러운 그림자(<code>--shadow-sm</code>). 클릭 가능한 카드는 hover 시 살짝 떠오릅니다.</td></tr>
@@ -175,9 +174,9 @@
   <h2>Gradients &amp; Shadows</h2>
   <p>깊이감과 세련된 인상을 위해 Purple 계열 그라데이션과 부드러운 그림자를 토큰으로 정의합니다. 모두 Light·Dark에서 자동 전환됩니다.</p>
   <div class="grid-3">
-    <div class="swatch"><div class="chip" style="background:var(--gradient-primary)"></div><div class="info"><b>Primary</b><code>--gradient-primary</code><br>주요 버튼</div></div>
-    <div class="swatch"><div class="chip" style="background:var(--gradient-aurora)"></div><div class="info"><b>Aurora</b><code>--gradient-aurora</code><br>카드 내부 배너·일러스트</div></div>
-    <div class="swatch"><div class="chip" style="display:grid;place-items:center;background:var(--color-surface)"><span class="gradient-text" style="font-size:var(--font-size-display);font-weight:var(--font-weight-bold)">DOOV</span></div><div class="info"><b>Text</b><code>--gradient-text</code><br>대형 제목 강조 (Display)</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--gradient-primary)"></div><div class="info"><b>Primary</b><code>--gradient-primary</code><br>버튼 hover 채움, 아이콘 타일</div></div>
+    <div class="swatch"><div class="chip" style="display:grid;place-items:center;background:var(--color-surface)"><span style="display:block;width:70%;height:44px;border-radius:999px;border:1.5px solid transparent;background:linear-gradient(var(--color-surface),var(--color-surface)) padding-box,var(--gradient-primary-border) border-box"></span></div><div class="info"><b>Primary Border</b><code>--gradient-primary-border</code><br>주요 버튼 테두리</div></div>
+        <div class="swatch"><div class="chip" style="display:grid;place-items:center;background:var(--color-surface)"><span class="gradient-text" style="font-size:var(--font-size-display);font-weight:var(--font-weight-bold)">DOOV</span></div><div class="info"><b>Text</b><code>--gradient-text</code><br>대형 제목 강조 (Display)</div></div>
   </div>
   <table>
     <thead><tr><th>Token</th><th>용도</th></tr></thead>

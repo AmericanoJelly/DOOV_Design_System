@@ -6,35 +6,64 @@
   <title>Button | DOOV Design System</title>
   <link rel="icon" type="image/svg+xml" href="../assets/brand/doov-symbol.svg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-gov-dynamic-subset.min.css">
-  <link rel="stylesheet" href="../assets/css/style.css?v=20261121144820">
-  <script src="../assets/js/layout.js?v=20261121144820"></script>
+  <link rel="stylesheet" href="../assets/css/style.css?v=20261121150157">
+  <script src="../assets/js/layout.js?v=20261121150157"></script>
 </head>
 <body>
 <main class="doc">
-<h1>Button</h1>
-  <p class="lead">사용자의 주요 행동을 실행하는 기본 컨트롤입니다.</p>
+  <h1>Button</h1>
+  <p class="lead">사용자가 어떤 행동을 실행할 때 누르는 기본 버튼입니다.</p>
   <div class="doc-meta"><span class="status draft">Draft</span><span>Last updated 2026-11-21</span></div>
 
-  <h2>Overview</h2>
-  <div class="placeholder">용도 및 적용 시점 작성 예정</div>
-
-  <h2>Anatomy</h2>
-  <div class="placeholder">구성 요소 정의 예정</div>
+  <h2>Preview</h2>
+  <div class="preview">
+<div class="row">
+  <button class="dds-btn primary">추론 시작</button>
+  <button class="dds-btn secondary">취소</button>
+  <button class="dds-btn tertiary">초기화</button>
+  <button class="dds-btn ghost">더보기</button>
+  <button class="dds-btn danger">일괄 부적합</button>
+</div>
+<div class="row">
+  <button class="dds-btn primary sm">Small</button>
+  <button class="dds-btn primary">Medium</button>
+  <button class="dds-btn primary lg">Large</button>
+  <button class="dds-btn secondary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V9m0 0-4 4m4-4 4 4M5 5h14"/></svg>파일 업로드</button>
+  <button class="dds-btn primary is-loading"><span class="dds-spinner"></span>추론 중</button>
+  <button class="dds-btn primary" disabled>비활성</button>
+</div>
+<p class="note">Primary 버튼에 마우스를 올려 보세요. 테두리만 있던 버튼이 채워집니다.</p>
+  </div>
 
   <h2>Variants</h2>
-  <div class="placeholder">유형별 명세 작성 예정</div>
+  <table>
+    <thead><tr><th>종류</th><th>쓰임</th></tr></thead>
+    <tbody><tr><td>Primary</td><td>화면에서 가장 중요한 행동 하나 (예: 추론 시작, 저장)</td></tr><tr><td>Secondary</td><td>함께 놓이는 보조 행동 (예: 취소, 파일 업로드)</td></tr><tr><td>Tertiary</td><td>눈에 덜 띄어야 하는 행동 (예: 초기화)</td></tr><tr><td>Ghost</td><td>툴바·목록 안의 가벼운 행동</td></tr><tr><td>Danger</td><td>되돌리기 어려운 행동 (예: 삭제, 일괄 부적합)</td></tr></tbody>
+  </table>
 
-  <h2>States</h2>
-  <div class="placeholder">상태별(Default, Hover, Pressed, Disabled 등) 명세 작성 예정</div>
+  <h2>Specs</h2>
+  <table>
+    <thead><tr><th>항목</th><th>값</th><th>토큰</th></tr></thead>
+    <tbody><tr><td>높이</td><td>32 / 40 / 48px (Small / Medium / Large)</td><td><code>--control-sm / md / lg</code></td></tr><tr><td>좌우 여백</td><td>12 / 16 / 20px</td><td></td></tr><tr><td>모서리</td><td>8px(Small) · 12px</td><td><code>--radius-sm / md</code></td></tr><tr><td>글자</td><td>14px · 600</td><td><code>--font-size-secondary</code></td></tr><tr><td>아이콘</td><td>16px · 글자와 6px 간격</td><td></td></tr><tr><td>Primary</td><td>그라데이션 테두리 1.5px + Purple 글자 → hover 시 그라데이션으로 채움 + 흰 글자</td><td><code>--gradient-primary-border</code> · <code>--gradient-primary</code></td></tr><tr><td>Secondary</td><td>흰 표면 + 1px 테두리</td><td><code>--color-surface</code> · <code>--color-border</code></td></tr><tr><td>비활성</td><td>회색 표면 + 흐린 글자</td><td><code>--color-surface-muted</code> · <code>--color-text-disabled</code></td></tr></tbody>
+  </table>
 
-  <h2>Props</h2>
-  <div class="placeholder">속성 명세 작성 예정</div>
+  <h2>Usage</h2>
+  <ul>
+    <li>Primary 버튼은 한 화면(또는 한 카드)에 하나만 둡니다.</li>
+    <li>버튼 문구는 동사로 짧게 씁니다. (예: "확인" 대신 "저장")</li>
+    <li>처리 시간이 걸리면 로딩 상태로 바꾸고 중복 클릭을 막습니다.</li>
+  </ul>
 
-  <h2>Usage Guidelines</h2>
-  <div class="placeholder">Do / Don't 기준 작성 예정</div>
+  <h2>Web</h2>
+  <p><code>tokens.css</code>와 <code>components.css</code>를 불러온 뒤 아래처럼 씁니다.</p>
+<pre><code>&lt;button class="dds-btn primary"&gt;추론 시작&lt;/button&gt;
+&lt;button class="dds-btn secondary"&gt;취소&lt;/button&gt;
+&lt;button class="dds-btn danger"&gt;일괄 부적합&lt;/button&gt;
+&lt;button class="dds-btn primary sm"&gt;Small&lt;/button&gt;
+&lt;button class="dds-btn primary is-loading"&gt;&lt;span class="dds-spinner"&gt;&lt;/span&gt;추론 중&lt;/button&gt;</code></pre>
 
-  <h2>Accessibility</h2>
-  <div class="placeholder">키보드 조작 및 대비 기준 작성 예정</div>
+  <h2>C# Desktop</h2>
+  <div class="placeholder">WPF / WinForms 중 구현 방식이 정해지면 작성합니다. 그 전까지는 위 Specs의 크기·색 토큰을 기준으로 구현합니다.</div>
 </main>
 </body>
 </html>

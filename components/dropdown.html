@@ -6,35 +6,58 @@
   <title>Dropdown | DOOV Design System</title>
   <link rel="icon" type="image/svg+xml" href="../assets/brand/doov-symbol.svg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-gov-dynamic-subset.min.css">
-  <link rel="stylesheet" href="../assets/css/style.css?v=20261121144820">
-  <script src="../assets/js/layout.js?v=20261121144820"></script>
+  <link rel="stylesheet" href="../assets/css/style.css?v=20261121150157">
+  <script src="../assets/js/layout.js?v=20261121150157"></script>
 </head>
 <body>
 <main class="doc">
-<h1>Dropdown</h1>
-  <p class="lead">목록에서 하나 이상의 값을 선택하는 컨트롤입니다.</p>
+  <h1>Dropdown</h1>
+  <p class="lead">목록에서 값을 하나 고릅니다.</p>
   <div class="doc-meta"><span class="status draft">Draft</span><span>Last updated 2026-11-21</span></div>
 
-  <h2>Overview</h2>
-  <div class="placeholder">용도 및 적용 시점 작성 예정</div>
-
-  <h2>Anatomy</h2>
-  <div class="placeholder">구성 요소 정의 예정</div>
+  <h2>Preview</h2>
+  <div class="preview">
+<div class="dds-field" style="width:240px">
+  <label for="dd1">모델</label>
+  <select id="dd1" class="dds-select"><option>dino-anomaly</option><option>patchcore</option><option>efficientad</option></select>
+</div>
+<div class="dds-field" style="width:240px">
+  <label for="dd2">필터</label>
+  <select id="dd2" class="dds-select"><option>전체</option><option>적합</option><option>부적합</option><option>보류</option></select>
+</div>
+<div class="dds-field" style="width:240px">
+  <label for="dd3">카메라</label>
+  <select id="dd3" class="dds-select" disabled><option>CAM-01</option></select>
+</div>
+  </div>
 
   <h2>Variants</h2>
-  <div class="placeholder">유형별 명세 작성 예정</div>
+  <table>
+    <thead><tr><th>종류</th><th>쓰임</th></tr></thead>
+    <tbody><tr><td>Default</td><td></td></tr><tr><td>Disabled</td><td></td></tr></tbody>
+  </table>
 
-  <h2>States</h2>
-  <div class="placeholder">상태별(Default, Hover, Pressed, Disabled 등) 명세 작성 예정</div>
+  <h2>Specs</h2>
+  <table>
+    <thead><tr><th>항목</th><th>값</th><th>토큰</th></tr></thead>
+    <tbody><tr><td>높이</td><td>40px</td><td><code>--control-md</code></td></tr><tr><td>모서리</td><td>12px</td><td><code>--radius-md</code></td></tr><tr><td>테두리</td><td>1px</td><td><code>--color-border-input</code></td></tr><tr><td>글자</td><td>16px</td><td><code>--font-size-body</code></td></tr><tr><td>화살표</td><td>18px, 오른쪽 10px</td><td></td></tr></tbody>
+  </table>
 
-  <h2>Props</h2>
-  <div class="placeholder">속성 명세 작성 예정</div>
+  <h2>Usage</h2>
+  <ul>
+    <li>옵션이 5개 이하면 Radio나 Segmented Control이 더 빠릅니다.</li>
+    <li>펼쳐지는 목록(옵션 패널) 디자인은 플랫폼 기본을 따릅니다.</li>
+  </ul>
 
-  <h2>Usage Guidelines</h2>
-  <div class="placeholder">Do / Don't 기준 작성 예정</div>
+  <h2>Web</h2>
+  <p><code>tokens.css</code>와 <code>components.css</code>를 불러온 뒤 아래처럼 씁니다.</p>
+<pre><code>&lt;select class="dds-select"&gt;
+  &lt;option&gt;dino-anomaly&lt;/option&gt;
+  &lt;option&gt;patchcore&lt;/option&gt;
+&lt;/select&gt;</code></pre>
 
-  <h2>Accessibility</h2>
-  <div class="placeholder">키보드 조작 및 대비 기준 작성 예정</div>
+  <h2>C# Desktop</h2>
+  <div class="placeholder">WPF / WinForms 중 구현 방식이 정해지면 작성합니다. 그 전까지는 위 Specs의 크기·색 토큰을 기준으로 구현합니다.</div>
 </main>
 </body>
 </html>

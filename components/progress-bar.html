@@ -6,35 +6,49 @@
   <title>Progress Bar | DOOV Design System</title>
   <link rel="icon" type="image/svg+xml" href="../assets/brand/doov-symbol.svg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-gov-dynamic-subset.min.css">
-  <link rel="stylesheet" href="../assets/css/style.css?v=20261121144820">
-  <script src="../assets/js/layout.js?v=20261121144820"></script>
+  <link rel="stylesheet" href="../assets/css/style.css?v=20261121150157">
+  <script src="../assets/js/layout.js?v=20261121150157"></script>
 </head>
 <body>
 <main class="doc">
-<h1>Progress Bar</h1>
-  <p class="lead">작업의 진행률을 표시합니다.</p>
+  <h1>Progress Bar</h1>
+  <p class="lead">추론, 업로드처럼 시간이 걸리는 작업의 진행 상황을 보여줍니다.</p>
   <div class="doc-meta"><span class="status draft">Draft</span><span>Last updated 2026-11-21</span></div>
 
-  <h2>Overview</h2>
-  <div class="placeholder">용도 및 적용 시점 작성 예정</div>
-
-  <h2>Anatomy</h2>
-  <div class="placeholder">구성 요소 정의 예정</div>
+  <h2>Preview</h2>
+  <div class="preview col">
+<div class="dds-progress" style="width:360px"><div class="head"><span>추론 진행</span><b>1 / 5</b></div><div class="track"><div class="bar" style="width:20%"></div></div></div>
+<div class="dds-progress indeterminate" style="width:360px"><div class="head"><span>모델 불러오는 중</span></div><div class="track"><div class="bar"></div></div></div>
+<div class="dds-progress is-error" style="width:360px"><div class="head"><span>업로드 실패</span><b>3 / 10</b></div><div class="track"><div class="bar" style="width:30%"></div></div></div>
+  </div>
 
   <h2>Variants</h2>
-  <div class="placeholder">유형별 명세 작성 예정</div>
+  <table>
+    <thead><tr><th>종류</th><th>쓰임</th></tr></thead>
+    <tbody><tr><td>Determinate</td><td>진행률을 알 때 (1 / 5)</td></tr><tr><td>Indeterminate</td><td>끝을 알 수 없을 때</td></tr><tr><td>Error</td><td>실패 — 빨간 막대 + 문구</td></tr></tbody>
+  </table>
 
-  <h2>States</h2>
-  <div class="placeholder">상태별(Default, Hover, Pressed, Disabled 등) 명세 작성 예정</div>
+  <h2>Specs</h2>
+  <table>
+    <thead><tr><th>항목</th><th>값</th><th>토큰</th></tr></thead>
+    <tbody><tr><td>트랙 높이</td><td>6px</td><td><code>--color-surface-muted</code></td></tr><tr><td>막대</td><td>Purple 그라데이션</td><td><code>--gradient-primary</code></td></tr><tr><td>라벨</td><td>14px, 숫자는 600 + 자릿수 정렬</td><td><code>--font-size-secondary</code></td></tr></tbody>
+  </table>
 
-  <h2>Props</h2>
-  <div class="placeholder">속성 명세 작성 예정</div>
+  <h2>Usage</h2>
+  <ul>
+    <li>가능하면 "1 / 5"처럼 남은 양을 숫자로 보여줍니다.</li>
+    <li>1초 안에 끝나는 작업에는 표시하지 않습니다.</li>
+  </ul>
 
-  <h2>Usage Guidelines</h2>
-  <div class="placeholder">Do / Don't 기준 작성 예정</div>
+  <h2>Web</h2>
+  <p><code>tokens.css</code>와 <code>components.css</code>를 불러온 뒤 아래처럼 씁니다.</p>
+<pre><code>&lt;div class="dds-progress"&gt;
+  &lt;div class="head"&gt;&lt;span&gt;추론 진행&lt;/span&gt;&lt;b&gt;1 / 5&lt;/b&gt;&lt;/div&gt;
+  &lt;div class="track"&gt;&lt;div class="bar" style="width:20%"&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
 
-  <h2>Accessibility</h2>
-  <div class="placeholder">키보드 조작 및 대비 기준 작성 예정</div>
+  <h2>C# Desktop</h2>
+  <div class="placeholder">WPF / WinForms 중 구현 방식이 정해지면 작성합니다. 그 전까지는 위 Specs의 크기·색 토큰을 기준으로 구현합니다.</div>
 </main>
 </body>
 </html>
