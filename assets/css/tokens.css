@@ -1,0 +1,353 @@
+/* ═══════════════════════════════════════════════════════════
+   DOOV Design System — Typography Tokens
+   KRDS의 타이포그래피·가독성·접근성 원칙을 참고한 DOOV 전용 체계입니다.
+   (KRDS 공식 규격과 동일하지 않습니다.)
+
+   규칙
+   - 폰트 크기는 아래 6단계만 사용합니다. 신규 크기를 추가하지 않습니다.
+   - 굵기는 400 / 600 / 700 세 단계만 사용합니다.
+   - 강조는 크기를 바꾸지 않고 굵기로 처리합니다.
+   - rem 값은 루트 16px 기준입니다. html의 font-size를 px로 고정하지 않습니다.
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  /* FONT FAMILY */
+  --font-family-base:
+    "Pretendard GOV",
+    "Pretendard",
+    "Noto Sans KR",
+    sans-serif;
+
+  /* FONT SIZE */
+  --font-size-display: 2rem;       /* 32px */
+  --font-size-page-title: 1.5rem;  /* 24px */
+  --font-size-section: 1.125rem;   /* 18px */
+  --font-size-body: 1rem;          /* 16px */
+  --font-size-secondary: 0.875rem; /* 14px */
+  --font-size-caption: 0.75rem;    /* 12px */
+
+  /* FONT WEIGHT */
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* LINE HEIGHT */
+  --line-height-display: 1.3;
+  --line-height-title: 1.4;
+  --line-height-body: 1.5;
+
+  /* LETTER SPACING */
+  --letter-spacing-default: 0;
+}
+
+/* ── 공통 Typography 클래스 ── */
+.typography-display {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-display);
+  letter-spacing: var(--letter-spacing-default);
+}
+
+.typography-page-title {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-page-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title);
+  letter-spacing: var(--letter-spacing-default);
+}
+
+.typography-section {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-section);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-title);
+  letter-spacing: var(--letter-spacing-default);
+}
+
+.typography-body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+  letter-spacing: var(--letter-spacing-default);
+}
+
+.typography-secondary {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-secondary);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+  letter-spacing: var(--letter-spacing-default);
+}
+
+.typography-caption {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+  letter-spacing: var(--letter-spacing-default);
+}
+
+/* ── 굵기 보조 클래스 (강조는 굵기로만 처리) ── */
+.font-regular  { font-weight: var(--font-weight-regular); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold     { font-weight: var(--font-weight-bold); }
+
+/* ── 수치 데이터: 자릿수 정렬 ── */
+.tabular-nums { font-variant-numeric: tabular-nums; }
+
+/* ═══════════════════════════════════════════════════════════
+   DOOV Design System — Color Tokens
+   KRDS 색상 체계(13단계 명도, 매직넘버 대비 규칙, 시맨틱 매핑)를 참고한 DOOV 전용 체계입니다.
+   - Primary: DOOV Purple — UI의 유일한 포인트 컬러
+   - Gray: 쿨 그레이 (화면의 기본 색)            - System: KRDS 시스템 색상 값 그대로 사용
+   - 원칙: 흰 배경 + 쿨 그레이로 구성하고, 컬러는 Purple 하나만 포인트로 사용합니다. 묶음은 테두리 대신 회색 면으로 표현합니다.
+   - 매직넘버: 단계 차이 40 → 3:1, 50 → 4.5:1, 70 → 7:1, 90 → 15:1 이상 (전 스케일 검증 완료)
+   - 화면에는 primitive(--color-primary-50 등)가 아닌 시맨틱 토큰(--color-text-basic 등)을 사용합니다.
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  /* Brand (로고 전용 — UI에는 시맨틱 토큰 사용) */
+  --color-brand-violet: #965fd4;
+  --color-brand-mint: #63eaaf;
+  --color-brand-black: #000000;
+
+  /* Primary */
+  --color-primary-5: #f5f0ff;
+  --color-primary-10: #ebe0fe;
+  --color-primary-20: #dac2ff;
+  --color-primary-30: #c69bfd;
+  --color-primary-40: #a770e7;
+  --color-primary-50: #925acf;
+  --color-primary-60: #763eb0;
+  --color-primary-70: #591b8f;
+  --color-primary-80: #3d0d65;
+  --color-primary-90: #25083e;
+  --color-primary-95: #1c0035;
+
+  /* Gray */
+  --color-gray-0: #ffffff;
+  --color-gray-5: #f3f5f8;
+  --color-gray-10: #e5e8ec;
+  --color-gray-20: #cdd1d7;
+  --color-gray-30: #b1b8c0;
+  --color-gray-40: #8c939e;
+  --color-gray-50: #6e7784;
+  --color-gray-60: #57616d;
+  --color-gray-70: #424d5a;
+  --color-gray-80: #2d3643;
+  --color-gray-90: #191b21;
+  --color-gray-95: #0e0f13;
+  --color-gray-100: #000000;
+
+  /* Danger */
+  --color-danger-5: #fdefec;
+  --color-danger-10: #fcdfd9;
+  --color-danger-20: #f7afa1;
+  --color-danger-30: #f48771;
+  --color-danger-40: #f05f42;
+  --color-danger-50: #de3412;
+  --color-danger-60: #bd2c0f;
+  --color-danger-70: #8a240f;
+  --color-danger-80: #5c180a;
+  --color-danger-90: #390d05;
+  --color-danger-95: #260903;
+
+  /* Warning */
+  --color-warning-5: #fff3db;
+  --color-warning-10: #ffe0a3;
+  --color-warning-20: #ffc95c;
+  --color-warning-30: #ffb114;
+  --color-warning-40: #c78500;
+  --color-warning-50: #9e6a00;
+  --color-warning-60: #8a5c00;
+  --color-warning-70: #614100;
+  --color-warning-80: #422c00;
+  --color-warning-90: #2e1f00;
+  --color-warning-95: #241800;
+
+  /* Success */
+  --color-success-5: #eaf6ec;
+  --color-success-10: #d8eedd;
+  --color-success-20: #a9dab4;
+  --color-success-30: #7ec88e;
+  --color-success-40: #3fa654;
+  --color-success-50: #228738;
+  --color-success-60: #267337;
+  --color-success-70: #285d33;
+  --color-success-80: #1f4727;
+  --color-success-90: #122b18;
+  --color-success-95: #0e2012;
+
+  /* Information */
+  --color-information-5: #e7f4fe;
+  --color-information-10: #d3ebfd;
+  --color-information-20: #9ed2fa;
+  --color-information-30: #5fb5f7;
+  --color-information-40: #2098f3;
+  --color-information-50: #0b78cb;
+  --color-information-60: #096ab3;
+  --color-information-70: #085691;
+  --color-information-80: #053961;
+  --color-information-90: #03253f;
+  --color-information-95: #021a2c;
+
+  --color-background-dim: rgba(0, 0, 0, 0.6);
+}
+
+/* Light (기본 모드) — .theme-light로 특정 영역만 라이트 적용 가능 */
+:root,
+.theme-light {
+  /* 배경 · 표면 */
+  --color-bg: var(--color-gray-0);
+  --color-bg-subtle: var(--color-gray-5);
+  --color-surface: var(--color-gray-0);
+  --color-surface-elevated: var(--color-gray-0);
+  --color-surface-muted: var(--color-gray-10);
+  --color-surface-inverse: var(--color-gray-90);
+  /* 텍스트 */
+  --color-text-bolder: var(--color-gray-95);
+  --color-text-basic: var(--color-gray-90);
+  --color-text-subtle: var(--color-gray-70);
+  --color-text-assistive: var(--color-gray-60);
+  --color-text-disabled: var(--color-gray-40);
+  --color-text-primary: var(--color-primary-60);
+  --color-text-inverse: var(--color-gray-0);
+  --color-text-inverse-static: var(--color-gray-0);
+  /* 보더 · 구분선 */
+  --color-border: var(--color-gray-20);
+  --color-border-light: var(--color-gray-10);
+  --color-border-input: var(--color-gray-50);
+  --color-divider: var(--color-gray-10);
+  --color-border-primary: var(--color-primary-50);
+  /* 아이콘 */
+  --color-icon: var(--color-gray-80);
+  --color-icon-subtle: var(--color-gray-60);
+  --color-icon-primary: var(--color-primary-50);
+  --color-icon-disabled: var(--color-gray-40);
+  /* 버튼 · 상호작용 */
+  --color-button-primary-fill: var(--color-primary-50);
+  --color-button-primary-fill-hover: var(--color-primary-60);
+  --color-button-primary-fill-pressed: var(--color-primary-70);
+  --color-button-secondary-fill: var(--color-gray-10);
+  --color-button-secondary-fill-hover: var(--color-gray-20);
+  --color-button-secondary-fill-pressed: var(--color-gray-30);
+  --color-action-hover: var(--color-gray-5);
+  --color-action-pressed: var(--color-gray-10);
+  --color-action-selected: var(--color-gray-5);
+  --color-link: var(--color-primary-50);
+  --color-link-hover: var(--color-primary-60);
+  /* 시스템 상태 (KRDS 규칙: icon 50/20 · text 60/20 · surface 5/95 · border 10/90) */
+  --color-danger-icon: var(--color-danger-50);
+  --color-danger-text: var(--color-danger-60);
+  --color-danger-surface: var(--color-danger-5);
+  --color-danger-border: var(--color-danger-10);
+  --color-warning-icon: var(--color-warning-50);
+  --color-warning-text: var(--color-warning-60);
+  --color-warning-surface: var(--color-warning-5);
+  --color-warning-border: var(--color-warning-10);
+  --color-success-icon: var(--color-success-50);
+  --color-success-text: var(--color-success-60);
+  --color-success-surface: var(--color-success-5);
+  --color-success-border: var(--color-success-10);
+  --color-information-icon: var(--color-information-50);
+  --color-information-text: var(--color-information-60);
+  --color-information-surface: var(--color-information-5);
+  --color-information-border: var(--color-information-10);
+}
+
+/* Dark (검사 화면 모드) — .theme-dark로 특정 영역만 다크 적용 가능 */
+:root[data-theme='dark'],
+.theme-dark {
+  /* 배경 · 표면 */
+  --color-bg: var(--color-gray-95);
+  --color-bg-subtle: var(--color-gray-90);
+  --color-surface: var(--color-gray-90);
+  --color-surface-elevated: var(--color-gray-80);
+  --color-surface-muted: var(--color-gray-80);
+  --color-surface-inverse: var(--color-gray-10);
+  /* 텍스트 */
+  --color-text-bolder: var(--color-gray-5);
+  --color-text-basic: var(--color-gray-10);
+  --color-text-subtle: var(--color-gray-20);
+  --color-text-assistive: var(--color-gray-30);
+  --color-text-disabled: var(--color-gray-60);
+  --color-text-primary: var(--color-primary-30);
+  --color-text-inverse: var(--color-gray-95);
+  --color-text-inverse-static: var(--color-gray-0);
+  /* 보더 · 구분선 */
+  --color-border: var(--color-gray-80);
+  --color-border-light: var(--color-gray-90);
+  --color-border-input: var(--color-gray-40);
+  --color-divider: var(--color-gray-90);
+  --color-border-primary: var(--color-primary-40);
+  /* 아이콘 */
+  --color-icon: var(--color-gray-5);
+  --color-icon-subtle: var(--color-gray-30);
+  --color-icon-primary: var(--color-primary-30);
+  --color-icon-disabled: var(--color-gray-60);
+  /* 버튼 · 상호작용 */
+  --color-button-primary-fill: var(--color-primary-50);
+  --color-button-primary-fill-hover: var(--color-primary-60);
+  --color-button-primary-fill-pressed: var(--color-primary-70);
+  --color-button-secondary-fill: var(--color-gray-80);
+  --color-button-secondary-fill-hover: var(--color-gray-70);
+  --color-button-secondary-fill-pressed: var(--color-gray-60);
+  --color-action-hover: var(--color-gray-80);
+  --color-action-pressed: var(--color-gray-70);
+  --color-action-selected: var(--color-gray-80);
+  --color-link: var(--color-primary-30);
+  --color-link-hover: var(--color-primary-20);
+  /* 시스템 상태 (KRDS 규칙: icon 50/20 · text 60/20 · surface 5/95 · border 10/90) */
+  --color-danger-icon: var(--color-danger-20);
+  --color-danger-text: var(--color-danger-20);
+  --color-danger-surface: var(--color-danger-95);
+  --color-danger-border: var(--color-danger-90);
+  --color-warning-icon: var(--color-warning-20);
+  --color-warning-text: var(--color-warning-20);
+  --color-warning-surface: var(--color-warning-95);
+  --color-warning-border: var(--color-warning-90);
+  --color-success-icon: var(--color-success-20);
+  --color-success-text: var(--color-success-20);
+  --color-success-surface: var(--color-success-95);
+  --color-success-border: var(--color-success-90);
+  --color-information-icon: var(--color-information-20);
+  --color-information-text: var(--color-information-20);
+  --color-information-surface: var(--color-information-95);
+  --color-information-border: var(--color-information-90);
+}
+
+/* Gradient · Shadow — Purple 계열만. 배경은 흰색을 유지하고 그라데이션은 버튼·아이콘·제목 등 하위 요소에만 사용 */
+:root,
+.theme-light {
+  --gradient-primary: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-primary-70) 100%);        /* 주요 버튼 (흰 텍스트 4.5:1 이상) */
+  --gradient-primary-hover: linear-gradient(135deg, var(--color-primary-60) 0%, var(--color-primary-80) 100%);
+  --gradient-text: linear-gradient(100deg, var(--color-primary-80) 0%, var(--color-primary-60) 55%, var(--color-primary-50) 100%); /* 대형 제목 강조 */
+  --gradient-aurora:
+    radial-gradient(55% 70% at 12% 0%, color-mix(in srgb, var(--color-primary-20) 75%, transparent) 0%, transparent 70%),
+    radial-gradient(45% 60% at 92% 8%, color-mix(in srgb, var(--color-primary-10) 90%, transparent) 0%, transparent 70%),
+    radial-gradient(70% 80% at 70% 110%, color-mix(in srgb, var(--color-information-10) 70%, transparent) 0%, transparent 70%),
+    linear-gradient(180deg, var(--color-gray-0) 0%, var(--color-gray-5) 100%);                                  /* 배너·일러스트 등 카드 내부 장식 영역 (페이지·섹션 배경에는 사용하지 않음) */
+  --gradient-surface: linear-gradient(180deg, var(--color-gray-0) 0%, var(--color-gray-5) 100%);                 /* 카드·예시 영역 */
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04), 0 1px 3px rgba(16, 24, 40, 0.06);
+  --shadow-md: 0 4px 12px -2px rgba(16, 24, 40, 0.08), 0 2px 4px -2px rgba(16, 24, 40, 0.04);
+  --shadow-lg: 0 16px 40px -12px rgba(16, 24, 40, 0.18);
+  --shadow-primary: 0 8px 24px -8px color-mix(in srgb, var(--color-primary-50) 60%, transparent);
+}
+:root[data-theme='dark'],
+.theme-dark {
+  --gradient-primary: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-primary-70) 100%);
+  --gradient-primary-hover: linear-gradient(135deg, var(--color-primary-60) 0%, var(--color-primary-80) 100%);
+  --gradient-text: linear-gradient(100deg, var(--color-gray-0) 0%, var(--color-primary-20) 60%, var(--color-primary-30) 100%);
+  --gradient-aurora:
+    radial-gradient(55% 70% at 12% 0%, color-mix(in srgb, var(--color-primary-70) 55%, transparent) 0%, transparent 70%),
+    radial-gradient(45% 60% at 92% 8%, color-mix(in srgb, var(--color-primary-80) 60%, transparent) 0%, transparent 70%),
+    radial-gradient(70% 80% at 70% 110%, color-mix(in srgb, var(--color-information-80) 45%, transparent) 0%, transparent 70%),
+    linear-gradient(180deg, var(--color-gray-90) 0%, var(--color-gray-95) 100%);
+  --gradient-surface: linear-gradient(180deg, var(--color-gray-90) 0%, var(--color-gray-95) 100%);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 6px 16px -4px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 20px 48px -12px rgba(0, 0, 0, 0.6);
+  --shadow-primary: 0 8px 28px -8px color-mix(in srgb, var(--color-primary-50) 70%, transparent);
+}

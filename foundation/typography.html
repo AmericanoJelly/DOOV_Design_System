@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Typography | DOOV Design System</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/brand/doov-symbol.svg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-gov-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css?v=20261121144820">
+  <script src="../assets/js/layout.js?v=20261121144820"></script>
+</head>
+<body>
+<main class="doc">
+  <h1>Typography</h1>
+  <p class="lead">DOOV 전 제품(웹사이트, 어드민, 제조 AX 대시보드, AI 비전 검사 시스템)에 공통 적용하는 타이포그래피 체계를 정의합니다.
+  모든 텍스트는 6단계 크기와 3단계 굵기 토큰으로만 표현합니다.</p>
+  <div class="doc-meta"><span class="status review">In Review</span><span>Last updated 2026-11-21</span></div>
+
+  <details class="prompt-box">
+    <summary>
+      <span class="prompt-title">
+        <span class="prompt-label">AI Prompt</span>
+        바이브코딩 세팅용 프롬프트
+      </span>
+      <button type="button" class="copy-btn" data-copy="#prompt-typography">복사</button>
+    </summary>
+    <p class="prompt-desc">Claude Code, Cursor 등 AI 코딩 도구에 붙여 넣거나 <code>CLAUDE.md</code>, <code>.cursorrules</code>에 저장하면 이 페이지의 Typography 규칙이 프로젝트 전체에 적용됩니다.</p>
+<pre id="prompt-typography"><code># DOOV Design System — Typography 규칙
+
+이 프로젝트의 모든 UI는 DOOV Design System의 Typography 규칙을 따른다.
+코드를 생성하거나 수정할 때 아래 규칙을 반드시 지킨다.
+(KRDS의 타이포그래피·가독성·접근성 원칙을 참고한 DOOV 전용 체계이며, KRDS 공식 규격과 동일하다고 표기하지 않는다.)
+
+## 1. 폰트
+- font-family: "Pretendard GOV", "Pretendard", "Noto Sans KR", sans-serif
+- 로드: https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-gov-dynamic-subset.min.css (SIL OFL 1.1)
+- 한글·영문·숫자 모두 동일 서체를 사용한다. 코드 블록만 고정폭 서체를 허용한다.
+
+## 2. 전역 토큰 (전역 CSS 또는 Theme 파일에 등록)
+```css
+:root {
+  --font-family-base: "Pretendard GOV", "Pretendard", "Noto Sans KR", sans-serif;
+
+  --font-size-display: 2rem;       /* 32px */
+  --font-size-page-title: 1.5rem;  /* 24px */
+  --font-size-section: 1.125rem;   /* 18px */
+  --font-size-body: 1rem;          /* 16px */
+  --font-size-secondary: 0.875rem; /* 14px */
+  --font-size-caption: 0.75rem;    /* 12px */
+
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-display: 1.3;
+  --line-height-title: 1.4;
+  --line-height-body: 1.5;
+
+  --letter-spacing-default: 0;
+}
+
+.typography-display    { font-family: var(--font-family-base); font-size: var(--font-size-display);    font-weight: var(--font-weight-bold);     line-height: var(--line-height-display); }
+.typography-page-title { font-family: var(--font-family-base); font-size: var(--font-size-page-title); font-weight: var(--font-weight-bold);     line-height: var(--line-height-title); }
+.typography-section    { font-family: var(--font-family-base); font-size: var(--font-size-section);    font-weight: var(--font-weight-semibold); line-height: var(--line-height-title); }
+.typography-body       { font-family: var(--font-family-base); font-size: var(--font-size-body);       font-weight: var(--font-weight-regular);  line-height: var(--line-height-body); }
+.typography-secondary  { font-family: var(--font-family-base); font-size: var(--font-size-secondary);  font-weight: var(--font-weight-regular);  line-height: var(--line-height-body); }
+.typography-caption    { font-family: var(--font-family-base); font-size: var(--font-size-caption);    font-weight: var(--font-weight-regular);  line-height: var(--line-height-body); }
+.tabular-nums          { font-variant-numeric: tabular-nums; }
+```
+
+## 3. 크기 6단계 (이 외의 크기는 사용 금지)
+| Token | Size | Weight | Line Height | 용도 |
+|---|---|---|---|---|
+| Display | 32px | 700 | 1.3 | KPI 수치, 검사 결과, 주요 지표 |
+| Page Title | 24px | 700 | 1.4 | 페이지·대시보드 제목 |
+| Section Title | 18px | 600 | 1.4 | 섹션·카드·모달 제목 |
+| Body / Primary | 16px | 400 | 1.5 | 본문, 주요 설명, 입력 필드 |
+| Body / Secondary | 14px | 400 | 1.5 | 테이블, 버튼, 보조 설명 |
+| Caption | 12px | 400 | 1.5 | 도움말, 단위, 부가 정보 |
+
+## 4. 굵기 3단계
+- 400 / 600 / 700만 사용한다. (100, 300, 500, 800 등 사용 금지)
+- 강조가 필요하면 크기를 바꾸지 말고 굵기만 바꾼다.
+
+## 5. 컴포넌트별 규격
+| 컴포넌트 | Size / Weight |
+|---|---|
+| KPI 핵심 수치 | 32 / 700 |
+| 페이지 제목 | 24 / 700 |
+| 섹션·카드·모달 제목 | 18 / 600 |
+| 기본 본문, 입력 필드 | 16 / 400 |
+| 강조 본문, 메인 메뉴 | 16 / 600 |
+| 서브 메뉴, 표 데이터, 보조 설명 | 14 / 400 |
+| 표 헤더, 버튼, 상태 배지 | 14 / 600 |
+| 캡션, 도움말 | 12 / 400 |
+
+## 6. 작성 규칙
+- font-size, font-weight, line-height를 px나 숫자로 직접 쓰지 않는다. 반드시 var(--font-*) 토큰 또는 .typography-* 클래스를 사용한다.
+- letter-spacing은 0을 유지한다.
+- 수치 데이터에는 tabular-nums를 적용하고, 표의 수치 열은 우측 정렬한다.
+- 정상/불량 등 상태는 색상만으로 구분하지 않고 텍스트를 함께 표시한다.
+- 중요한 상태 정보와 오류 메시지는 12px로 표시하지 않는다.
+- 일반 텍스트는 배경 대비 4.5:1 이상을 확보한다.
+- html의 font-size를 px로 고정하지 않고, user-scalable=no 등 확대를 막는 설정을 쓰지 않는다.
+- 고정 높이 대신 패딩과 행간으로 영역을 잡아 200% 확대 시에도 잘림이나 겹침이 없게 한다.
+- Tailwind, CSS Modules, styled-components 등을 사용하면 같은 토큰 값을 해당 theme 설정에 매핑한다.
+
+## 7. 작업 절차
+1. 현재 프로젝트의 프레임워크, 스타일링 구조, 기존 폰트 설정을 먼저 분석한다.
+2. 기존 Typography 스타일, 폰트 설정, 중복 CSS를 모두 찾아 이 토큰으로 대체한다. 기존 디자인 시스템에 타이포그래피 정의가 있어도 병행하거나 확장하지 않고 이 규칙으로 대체하며, 대체 후 더 이상 참조되지 않는 기존 정의는 제거한다.
+3. 버튼, 입력 필드, 테이블, 메뉴, 카드, 모달 등 공통 컴포넌트부터 적용한다.
+4. 대규모 변경 전에 영향 범위를 정리해 보고하고, 적용 후 레이아웃이 깨지지 않았는지 검증한다.
+5. 기존 기능과 데이터 처리 로직은 변경하지 않는다.</code></pre>
+  </details>
+
+  <h2>Purpose</h2>
+  <ul>
+    <li><strong>일관성</strong> — 동일한 UI 요소는 모든 화면에서 동일한 크기와 굵기로 표시합니다.</li>
+    <li><strong>가독성</strong> — 고밀도 데이터 화면에서도 정보의 위계가 명확하게 인지되도록 합니다.</li>
+    <li><strong>유지보수성</strong> — 폰트 규격을 개별 화면에 하드코딩하지 않고 토큰으로 관리하여, 토큰 수정만으로 전체 UI에 반영합니다.</li>
+  </ul>
+  <p>본 체계는 KRDS(Korea Design System)의 타이포그래피, 가독성, 웹 접근성 원칙을 참고하여 DOOV 환경에 맞게 정의한 <strong>DOOV 전용 기준</strong>이며, KRDS 공식 규격과 동일하지 않습니다.</p>
+
+  <h2>Font Family</h2>
+  <table>
+    <tbody>
+      <tr><th style="width:180px">기본 서체</th><td><strong>Pretendard GOV</strong></td></tr>
+      <tr><th>대체 서체</th><td>Pretendard → Noto Sans KR → sans-serif</td></tr>
+      <tr><th>적용 범위</th><td>한글, 영문, 숫자 모두 동일 서체 체계 적용</td></tr>
+      <tr><th>라이선스</th><td>SIL Open Font License 1.1 (상업적 사용 및 웹 임베딩 허용)</td></tr>
+      <tr><th>배포</th><td><code>pretendard@v1.3.9 / static / pretendard-gov-dynamic-subset</code> (jsDelivr CDN)</td></tr>
+    </tbody>
+  </table>
+  <p>코드 예제(<code>&lt;pre&gt;</code>, <code>&lt;code&gt;</code>)에 한해 고정폭 시스템 서체를 사용합니다.</p>
+
+  <h2>Type Scale</h2>
+  <p>폰트 크기는 아래 6단계만 사용합니다. 신규 크기는 추가하지 않습니다.</p>
+  <div class="type-scale">
+    <div class="type-row">
+      <div class="spec"><b>Display</b>32px · 700 · 1.3</div>
+      <p class="sample typography-display">98.7% 양품률</p>
+    </div>
+    <div class="type-row">
+      <div class="spec"><b>Page Title</b>24px · 700 · 1.4</div>
+      <p class="sample typography-page-title">검사 결과 대시보드</p>
+    </div>
+    <div class="type-row">
+      <div class="spec"><b>Section Title</b>18px · 600 · 1.4</div>
+      <p class="sample typography-section">라인별 불량 현황</p>
+    </div>
+    <div class="type-row">
+      <div class="spec"><b>Body / Primary</b>16px · 400 · 1.5</div>
+      <p class="sample typography-body">선택한 기간의 검사 이미지와 판정 결과를 확인합니다.</p>
+    </div>
+    <div class="type-row">
+      <div class="spec"><b>Body / Secondary</b>14px · 400 · 1.5</div>
+      <p class="sample typography-secondary">모델 dino-anomaly · 추론 시간 132ms</p>
+    </div>
+    <div class="type-row">
+      <div class="spec"><b>Caption</b>12px · 400 · 1.5</div>
+      <p class="sample typography-caption">최근 업데이트 2026-11-21 15:27:14</p>
+    </div>
+  </div>
+  <table>
+    <thead><tr><th>Token</th><th>Size</th><th>Weight</th><th>Line Height</th><th>용도</th></tr></thead>
+    <tbody>
+      <tr><td>Display</td><td>32px (2rem)</td><td>700</td><td>1.3</td><td>KPI 수치, 검사 결과, 주요 지표</td></tr>
+      <tr><td>Page Title</td><td>24px (1.5rem)</td><td>700</td><td>1.4</td><td>페이지 제목, 대시보드 제목</td></tr>
+      <tr><td>Section Title</td><td>18px (1.125rem)</td><td>600</td><td>1.4</td><td>섹션 제목, 카드 제목, 팝업 제목</td></tr>
+      <tr><td>Body / Primary</td><td>16px (1rem)</td><td>400</td><td>1.5</td><td>기본 본문, 주요 설명, 입력 필드</td></tr>
+      <tr><td>Body / Secondary</td><td>14px (0.875rem)</td><td>400</td><td>1.5</td><td>테이블, 버튼, 보조 설명</td></tr>
+      <tr><td>Caption</td><td>12px (0.75rem)</td><td>400</td><td>1.5</td><td>도움말, 단위, 부가 정보</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Font Weight</h2>
+  <p>굵기는 3단계로 제한합니다. 강조가 필요한 경우 크기를 바꾸지 않고 굵기만 변경합니다.</p>
+  <div class="weight-row">
+    <div class="card"><span class="glyph font-regular">가 Aa 12</span><span class="num">Regular · 400</span></div>
+    <div class="card"><span class="glyph font-semibold">가 Aa 12</span><span class="num">SemiBold · 600</span></div>
+    <div class="card"><span class="glyph font-bold">가 Aa 12</span><span class="num">Bold · 700</span></div>
+  </div>
+  <table>
+    <thead><tr><th>Weight</th><th>Token</th><th>적용 범위</th></tr></thead>
+    <tbody>
+      <tr><td>Regular · 400</td><td><code>--font-weight-regular</code></td><td>본문, 표 데이터, 보조 설명, 캡션</td></tr>
+      <tr><td>SemiBold · 600</td><td><code>--font-weight-semibold</code></td><td>섹션·카드 제목, 메뉴, 버튼, 배지, 표 헤더, 강조 본문</td></tr>
+      <tr><td>Bold · 700</td><td><code>--font-weight-bold</code></td><td>Display, 페이지 제목</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Line Height &amp; Letter Spacing</h2>
+  <table>
+    <thead><tr><th>구분</th><th>Line Height</th><th>Token</th></tr></thead>
+    <tbody>
+      <tr><td>Display</td><td>1.3</td><td><code>--line-height-display</code></td></tr>
+      <tr><td>Page Title, Section Title</td><td>1.4</td><td><code>--line-height-title</code></td></tr>
+      <tr><td>Body / Primary, Body / Secondary, Caption</td><td>1.5</td><td><code>--line-height-body</code></td></tr>
+    </tbody>
+  </table>
+  <p>자간은 기본값 <code>0</code>(<code>--letter-spacing-default</code>)을 사용하며, 별도의 디자인 목적이 없는 한 조정하지 않습니다.</p>
+
+  <h2>Component Mapping</h2>
+  <p>동일한 컴포넌트는 모든 화면에서 아래 규격을 동일하게 적용합니다.</p>
+  <table>
+    <thead><tr><th>UI 컴포넌트</th><th>Token</th><th>Size</th><th>Weight</th></tr></thead>
+    <tbody>
+      <tr><td>KPI 핵심 수치</td><td>Display</td><td>32px</td><td>700</td></tr>
+      <tr><td>페이지 제목</td><td>Page Title</td><td>24px</td><td>700</td></tr>
+      <tr><td>섹션 제목</td><td>Section Title</td><td>18px</td><td>600</td></tr>
+      <tr><td>카드 제목</td><td>Section Title</td><td>18px</td><td>600</td></tr>
+      <tr><td>모달 / 팝업 제목</td><td>Section Title</td><td>18px</td><td>600</td></tr>
+      <tr><td>기본 본문</td><td>Body / Primary</td><td>16px</td><td>400</td></tr>
+      <tr><td>강조 본문</td><td>Body / Primary</td><td>16px</td><td>600</td></tr>
+      <tr><td>입력 필드</td><td>Body / Primary</td><td>16px</td><td>400</td></tr>
+      <tr><td>메인 메뉴</td><td>Body / Primary</td><td>16px</td><td>600</td></tr>
+      <tr><td>서브 메뉴</td><td>Body / Secondary</td><td>14px</td><td>400</td></tr>
+      <tr><td>표 헤더</td><td>Body / Secondary</td><td>14px</td><td>600</td></tr>
+      <tr><td>표 데이터</td><td>Body / Secondary</td><td>14px</td><td>400</td></tr>
+      <tr><td>버튼 텍스트</td><td>Body / Secondary</td><td>14px</td><td>600</td></tr>
+      <tr><td>상태 배지</td><td>Body / Secondary</td><td>14px</td><td>600</td></tr>
+      <tr><td>보조 설명</td><td>Body / Secondary</td><td>14px</td><td>400</td></tr>
+      <tr><td>캡션</td><td>Caption</td><td>12px</td><td>400</td></tr>
+      <tr><td>도움말</td><td>Caption</td><td>12px</td><td>400</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Tokens</h2>
+  <p>전역 토큰은 <code>assets/css/tokens.css</code>에 정의되어 있으며, rem 값은 루트 16px 기준입니다.</p>
+<pre><code>:root {
+  /* FONT FAMILY */
+  --font-family-base: "Pretendard GOV", "Pretendard", "Noto Sans KR", sans-serif;
+
+  /* FONT SIZE */
+  --font-size-display: 2rem;       /* 32px */
+  --font-size-page-title: 1.5rem;  /* 24px */
+  --font-size-section: 1.125rem;   /* 18px */
+  --font-size-body: 1rem;          /* 16px */
+  --font-size-secondary: 0.875rem; /* 14px */
+  --font-size-caption: 0.75rem;    /* 12px */
+
+  /* FONT WEIGHT */
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* LINE HEIGHT */
+  --line-height-display: 1.3;
+  --line-height-title: 1.4;
+  --line-height-body: 1.5;
+
+  /* LETTER SPACING */
+  --letter-spacing-default: 0;
+}</code></pre>
+
+  <h3>Utility Classes</h3>
+  <table>
+    <thead><tr><th>Class</th><th>적용 규격</th></tr></thead>
+    <tbody>
+      <tr><td><code>.typography-display</code></td><td>32px · 700 · 1.3</td></tr>
+      <tr><td><code>.typography-page-title</code></td><td>24px · 700 · 1.4</td></tr>
+      <tr><td><code>.typography-section</code></td><td>18px · 600 · 1.4</td></tr>
+      <tr><td><code>.typography-body</code></td><td>16px · 400 · 1.5</td></tr>
+      <tr><td><code>.typography-secondary</code></td><td>14px · 400 · 1.5</td></tr>
+      <tr><td><code>.typography-caption</code></td><td>12px · 400 · 1.5</td></tr>
+      <tr><td><code>.font-regular</code> / <code>.font-semibold</code> / <code>.font-bold</code></td><td>굵기 강조</td></tr>
+      <tr><td><code>.tabular-nums</code></td><td>수치 자릿수 정렬</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Examples</h2>
+  <h3>KPI 대시보드</h3>
+  <div class="example">
+    <div class="ex-head">
+      <p class="ex-title typography-section">오늘의 검사 현황</p>
+      <span class="typography-caption" style="color:var(--color-text-assistive)">15:27:14 기준</span>
+    </div>
+    <div class="kpis">
+      <div class="kpi">
+        <p class="label typography-secondary">총 검사 수량</p>
+        <p class="value typography-display">12,480<span class="unit">EA</span></p>
+        <p class="help typography-caption">전일 대비 +4.2%</p>
+      </div>
+      <div class="kpi">
+        <p class="label typography-secondary">양품률</p>
+        <p class="value typography-display">98.7<span class="unit">%</span></p>
+        <p class="help typography-caption">목표 98.0%</p>
+      </div>
+      <div class="kpi">
+        <p class="label typography-secondary">불량 수량</p>
+        <p class="value typography-display">162<span class="unit">EA</span></p>
+        <p class="help typography-caption">Line 3 집중 발생</p>
+      </div>
+    </div>
+  </div>
+<pre><code>&lt;p class="typography-secondary"&gt;양품률&lt;/p&gt;
+&lt;p class="typography-display tabular-nums"&gt;98.7&lt;span class="typography-secondary"&gt;%&lt;/span&gt;&lt;/p&gt;
+&lt;p class="typography-caption"&gt;목표 98.0%&lt;/p&gt;</code></pre>
+
+  <h3>검사 결과 테이블</h3>
+  <p>판정 상태는 색상과 텍스트를 함께 표시하고, 수치는 우측 정렬 및 <code>tabular-nums</code>를 적용합니다.</p>
+  <div class="example">
+    <table>
+      <thead><tr><th>No.</th><th>파일명</th><th class="num">Score</th><th>판정</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>1.png</td><td class="num">0.71</td><td><span class="result-badge fail">부적합</span></td></tr>
+        <tr><td>2</td><td>2.png</td><td class="num">0.12</td><td><span class="result-badge pass">적합</span></td></tr>
+        <tr><td>3</td><td>3.png</td><td class="num">0.48</td><td><span class="result-badge hold">보류</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Accessibility</h2>
+  <ul>
+    <li>모든 크기는 rem 단위로 정의하며, <code>html</code>의 font-size를 px로 고정하지 않습니다. 사용자의 브라우저 글자 크기 설정과 확대 기능을 제한하지 않습니다.</li>
+    <li><code>user-scalable=no</code>, <code>maximum-scale</code> 등 확대를 차단하는 viewport 설정을 사용하지 않습니다.</li>
+    <li>일반 텍스트는 배경 대비 <strong>4.5:1 이상</strong>의 명도 대비를 확보합니다.</li>
+    <li>200% 확대 시에도 텍스트 잘림이나 겹침이 발생하지 않도록 고정 높이 대신 패딩과 행간으로 영역을 확보합니다.</li>
+    <li>정상/불량 등 상태 정보는 색상만으로 구분하지 않고 반드시 텍스트를 함께 표시합니다.</li>
+    <li>중요한 상태 정보와 오류 메시지는 Caption(12px)으로 표시하지 않습니다.</li>
+  </ul>
+
+  <h2>Rules</h2>
+  <p>신규 화면 및 컴포넌트 개발 시 아래 기준을 준수합니다.</p>
+  <ol>
+    <li>폰트 크기, 굵기, 행간은 반드시 토큰(<code>var(--font-size-*)</code> 등) 또는 <code>.typography-*</code> 클래스로 지정합니다. px 값을 직접 작성하지 않습니다.</li>
+    <li>6단계 외의 폰트 크기를 추가하지 않습니다. 강조가 필요하면 굵기를 변경합니다.</li>
+    <li>굵기는 400 / 600 / 700만 사용합니다.</li>
+    <li>동일한 UI 요소는 <a href="#component-mapping">Component Mapping</a>의 규격을 그대로 따릅니다.</li>
+    <li>검사 결과, 생산량, 불량률 등 주요 KPI는 Display(32px)를 적용합니다.</li>
+    <li>수치 데이터에는 <code>tabular-nums</code>를 적용합니다.</li>
+    <li>현장 원거리 확인 등 예외 규격이 필요한 경우 임의로 확대하지 않고, 디자인 시스템 담당자 검토 후 토큰으로 추가합니다.</li>
+  </ol>
+</main>
+</body>
+</html>

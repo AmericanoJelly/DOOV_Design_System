@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Colors | DOOV Design System</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/brand/doov-symbol.svg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-gov-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css?v=20261121144820">
+  <script src="../assets/js/layout.js?v=20261121144820"></script>
+</head>
+<body>
+<main class="doc">
+  <h1>Colors</h1>
+  <p class="lead">DOOV 제품 전반에 적용하는 색상 팔레트와 시맨틱 토큰을 정의합니다. 화면은 흰 배경과 쿨 그레이로 구성하고, 포인트 컬러는 DOOV Purple 하나만 사용합니다. 대비 규칙과 상태 색상은 KRDS 기준을 따릅니다.</p>
+  <div class="doc-meta"><span class="status review">In Review</span><span>Last updated 2026-11-21</span></div>
+
+  <details class="prompt-box">
+    <summary>
+      <span class="prompt-title"><span class="prompt-label">AI Prompt</span>바이브코딩 세팅용 프롬프트</span>
+      <button type="button" class="copy-btn" data-copy="#prompt-colors">복사</button>
+    </summary>
+    <p class="prompt-desc">Claude Code, Cursor 등 AI 코딩 도구에 붙여 넣거나 <code>CLAUDE.md</code>, <code>.cursorrules</code>에 저장하면 이 페이지의 Color 규칙이 프로젝트 전체에 적용됩니다.</p>
+<pre id="prompt-colors"><code># DOOV Design System — Color 규칙
+
+이 프로젝트의 모든 UI 색상은 DOOV Design System의 Color 규칙을 따른다.
+(KRDS 색상 체계를 참고한 DOOV 전용 체계이며, KRDS 공식 규격과 동일하다고 표기하지 않는다.)
+
+## 1. 디자인 원칙 (가장 중요)
+- 화면은 흰 배경 + 쿨 그레이로 구성한다. 포인트 컬러는 DOOV Purple 하나만 사용한다.
+- Light 배경은 흰색(--color-bg)이다. 화면 전체를 회색으로 채우지 않는다.
+- 연한 보라 등 컬러 배경 면을 만들지 않는다. 로고의 Mint는 로고 전용이며 UI에 쓰지 않는다.
+- 주요 버튼: Purple 그라데이션 + 흰 텍스트 (--gradient-primary, --color-text-inverse-static). Light·Dark 공통.
+- 보조 버튼: 회색 채움 + 기본 텍스트 (--color-button-secondary-fill, --color-text-basic).
+- 선택 상태: 회색 면(--color-action-selected) + Purple 텍스트(--color-text-primary). 세그먼트는 회색 트랙 위 밝은 칸(--color-surface-elevated).
+- 상태 표시: 상태색은 아이콘·점·라벨 텍스트에만 쓰고 배경은 회색 면을 유지한다.
+- 카드·패널: 흰 표면(--color-surface) + 얇은 테두리(--color-border-light) + 부드러운 그림자(--shadow-sm). 클릭 가능한 카드는 hover 시 translateY(-2px) + --shadow-md.
+- 페이지·섹션·히어로 배경은 흰색을 유지한다. 그라데이션은 Purple 계열 토큰만, 하위 요소에만 쓴다: 주요 버튼·아이콘 타일 --gradient-primary, 대형 제목 텍스트 --gradient-text, 카드 내부 배너·일러스트 --gradient-aurora.
+- 주요 버튼은 알약형(border-radius 999px) + --gradient-primary + --shadow-primary.
+- 헤더는 반투명 유리 질감(배경 72% + backdrop-filter: saturate(180%) blur(20px)).
+- 넉넉한 여백과 둥근 모서리(8 / 12 / 16 / 28px)를 사용한다. 표는 세로선 없이 가로 구분선만 사용한다.
+- 모션은 cubic-bezier(0.2, 0, 0, 1) 0.2~0.6s로 절제하고, prefers-reduced-motion에서는 끈다.
+- 비율: 흰 배경 60 : 쿨 그레이 30 : Purple 10 이하.
+
+## 2. 토큰 구조
+- Primitive: --color-primary-{5~95}, --color-gray-{0~100}, --color-{danger|warning|success|information}-{5~95}
+- Semantic: --color-bg, --color-bg-subtle, --color-surface, --color-surface-elevated, --color-text-*, --color-border-*, --color-icon-*, --color-button-primary-*, --color-button-secondary-*, --color-action-*, --color-{status}-{icon|text|surface|border}
+- 화면 코드에는 반드시 Semantic 토큰만 사용한다. Primitive와 HEX 값을 직접 쓰지 않는다.
+- 토큰 원본은 assets/css/tokens.css 이다. 새 프로젝트에는 이 파일을 그대로 복사해 전역 CSS로 등록한다.
+
+## 3. 모드
+- Light(기본): :root  /  Dark(검사 화면): &lt;html data-theme="dark"&gt;
+- 특정 영역만 모드를 바꿀 때는 .theme-light / .theme-dark 클래스를 사용한다.
+- 모드별 색은 Semantic 토큰이 자동으로 전환하므로, 컴포넌트에서 모드별 색을 따로 지정하지 않는다.
+
+## 4. 시스템 상태 색 (KRDS 값 사용)
+| 요소 | Light | Dark | 토큰 |
+|---|---|---|---|
+| 아이콘·점 | {status}-50 | {status}-20 | --color-{status}-icon |
+| 텍스트 | {status}-60 | {status}-20 | --color-{status}-text |
+| 배경 | {status}-5 | {status}-95 | --color-{status}-surface (치명적 경고에만 제한적으로) |
+| 보더 | {status}-10 | {status}-90 | --color-{status}-border |
+
+검사 판정 매핑: 적합 = success, 부적합 = danger, 보류 = gray(--color-text-subtle), 주의 = warning
+판정 버튼은 회색 채움 버튼에 상태색 텍스트로 표시한다.
+
+## 5. 버튼 상태
+- 주요 버튼: fill → hover → pressed = --color-button-primary-fill / -fill-hover / -fill-pressed (점진적으로 진해짐)
+- 보조 버튼: --color-button-secondary-fill / -fill-hover / -fill-pressed
+- 상태 값에 다른 색조를 섞지 않는다. disabled 상태에 투명도(alpha)를 사용하지 않고 --color-text-disabled 등 토큰을 사용한다.
+
+## 6. 접근성
+- 매직넘버: 단계 차이 40 → 3:1, 50 → 4.5:1, 70 → 7:1, 90 → 15:1 이상. 새 색을 추가할 때도 이 규칙을 지킨다.
+- 본문 텍스트는 배경 대비 4.5:1 이상, 아이콘·입력창 보더는 3:1 이상(입력창은 --color-border-input).
+- 상태 정보는 색상만으로 구분하지 않고 텍스트나 아이콘을 함께 표시한다. (적록 색각이상 고려: 적합/부적합은 반드시 텍스트 병기)
+- 배경과 비슷한 5, 95 단계는 텍스트·아이콘에 사용하지 않는다.
+
+## 7. 작업 절차
+1. 현재 프로젝트의 색상 정의(CSS 변수, theme, Tailwind config 등)를 먼저 분석한다.
+2. 기존 색상 정의와 하드코딩된 HEX/RGB 값을 모두 찾아 이 Semantic 토큰으로 대체한다. 기존 색상 체계를 병행하거나 확장하지 않으며, 대체 후 참조되지 않는 기존 정의는 제거한다.
+3. 대규모 변경 전에 영향 범위를 보고하고, 적용 후 라이트·다크 두 모드에서 화면을 검증한다.
+4. 기존 기능과 데이터 처리 로직은 변경하지 않는다.</code></pre>
+  </details>
+
+  <h2>Overview</h2>
+  <table>
+    <thead><tr><th>구분</th><th>기준 색상</th><th>역할</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Gray</strong></td><td>쿨 그레이</td><td>배경, 표면, 텍스트, 구분선, 보조 버튼 — 화면 대부분을 구성하는 기본 색</td></tr>
+      <tr><td><strong>Primary</strong></td><td>DOOV Purple</td><td>주요 버튼, 링크, 선택 상태 — <strong>유일한 포인트 컬러</strong></td></tr>
+      <tr><td><strong>System</strong></td><td>KRDS 시스템 색상</td><td>Danger · Warning · Success · Information — 상태 전달에만 사용</td></tr>
+    </tbody>
+  </table>
+  <p>Primary는 11단계(5~95), Gray는 13단계(0~100)로 구분하며, 모든 단계는 KRDS 매직넘버 대비 규칙을 충족합니다. 본 체계는 KRDS 색상 체계를 참고한 DOOV 전용 기준이며, KRDS 공식 규격과 동일하지 않습니다.</p>
+
+  <h2>Principles</h2>
+  <div class="cards feature-cards">
+    <div class="card feature tone-1"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><path d="M3.5 9h17M8 13.5h5M8 16h8"/></svg></span><h4>White Base</h4><p>흰 배경과 쿨 그레이가 기본입니다</p></div>
+    <div class="card feature tone-2"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5" fill="currentColor"/></svg></span><h4>One Accent</h4><p>포인트 컬러는 퍼플 하나만 씁니다</p></div>
+    <div class="card feature tone-3"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3.5" width="13.5" height="11" rx="2.5"/><path d="M17 17.5v.5a2.5 2.5 0 0 1-2.5 2.5H6A2.5 2.5 0 0 1 3.5 18V10A2.5 2.5 0 0 1 6 7.5h.5"/></svg></span><h4>Soft Depth</h4><p>얇은 선과 그림자로 구분합니다</p></div>
+  </div>
+  <table>
+    <thead><tr><th style="width:200px">요소</th><th>기준</th></tr></thead>
+    <tbody>
+      <tr><td>주요 버튼</td><td>Purple 그라데이션(<code>--gradient-primary</code>) + 흰 텍스트, 알약형. Light·Dark 공통. 화면의 핵심 행동에 사용합니다.</td></tr>
+      <tr><td>보조 버튼</td><td>흰 표면 + 얇은 테두리, 또는 회색 채움(<code>button-secondary-fill</code>). 반복되는 행동과 판정 버튼에 사용합니다.</td></tr>
+      <tr><td>선택 상태</td><td>회색 면(<code>action-selected</code>) + Purple 텍스트, 또는 세그먼트의 밝은 칸으로 표시합니다.</td></tr>
+      <tr><td>카드 · 패널</td><td>흰 표면 + 얇은 테두리(<code>border-light</code>) + 부드러운 그림자(<code>--shadow-sm</code>). 클릭 가능한 카드는 hover 시 살짝 떠오릅니다.</td></tr>
+      <tr><td>그라데이션</td><td>Purple 계열만 사용합니다. 페이지·섹션·히어로 배경은 흰색을 유지하고, 그라데이션은 주요 버튼, 아이콘 타일, 대형 제목 텍스트 등 <strong>하위 요소</strong>에만 씁니다.</td></tr>
+      <tr><td>상태 표시</td><td>상태색은 아이콘·점·라벨 텍스트에만 사용합니다. 배경은 회색 면을 유지합니다.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Brand Colors</h2>
+  <p>로고에서 사용하는 색상입니다. <strong>로고 전용</strong>이며 UI에는 사용하지 않습니다. 특히 Mint는 로고에만 사용하고 UI 포인트 컬러로 쓰지 않습니다.
+  로고 Violet(<code>#965FD4</code>)은 흰 배경 대비 4.3:1로 본문 기준(4.5:1)에 미달하므로, UI용 Primary 기준 색(primary-50)은 이를 소폭 보정한 <code>#925acf</code>(4.6:1)를 사용합니다.</p>
+  <div class="grid-3">
+    <div class="swatch"><div class="chip" style="background:#965FD4"></div><div class="info"><b>Brand Violet</b><code>--color-brand-violet</code><br><code>#965FD4</code></div></div>
+    <div class="swatch"><div class="chip" style="background:#63EAAF"></div><div class="info"><b>Brand Mint</b><code>--color-brand-mint</code><br><code>#63EAAF</code></div></div>
+    <div class="swatch"><div class="chip" style="background:#000000"></div><div class="info"><b>Brand Black</b><code>--color-brand-black</code><br><code>#000000</code></div></div>
+  </div>
+
+  <h2>Palette</h2>
+  <p>테두리가 표시된 칸은 각 색상의 기준 단계입니다. 칸에 마우스를 올리면 토큰 이름과 흰색·검정 배경 대비 값을 확인할 수 있습니다.</p>
+  <h3>Primary</h3>
+  <div class="palette">
+    <div class="palette-head"><b>Primary — DOOV Purple</b><span>기준 primary-50</span></div>
+    <div class="ramp" style="--n:11"><div class="sw" style="background:#f5f0ff;color:#000000" title="--color-primary-5  흰 배경 대비 1.12:1 · 검정 배경 대비 18.79:1"><b>5</b><span class="hex">F5F0FF</span></div><div class="sw" style="background:#ebe0fe;color:#000000" title="--color-primary-10  흰 배경 대비 1.26:1 · 검정 배경 대비 16.63:1"><b>10</b><span class="hex">EBE0FE</span></div><div class="sw" style="background:#dac2ff;color:#000000" title="--color-primary-20  흰 배경 대비 1.60:1 · 검정 배경 대비 13.14:1"><b>20</b><span class="hex">DAC2FF</span></div><div class="sw" style="background:#c69bfd;color:#000000" title="--color-primary-30  흰 배경 대비 2.21:1 · 검정 배경 대비 9.51:1"><b>30</b><span class="hex">C69BFD</span></div><div class="sw" style="background:#a770e7;color:#000000" title="--color-primary-40  흰 배경 대비 3.43:1 · 검정 배경 대비 6.11:1"><b>40</b><span class="hex">A770E7</span></div><div class="sw key" style="background:#925acf;color:#ffffff" title="--color-primary-50  흰 배경 대비 4.58:1 · 검정 배경 대비 4.59:1"><b>50</b><span class="hex">925ACF</span></div><div class="sw" style="background:#763eb0;color:#ffffff" title="--color-primary-60  흰 배경 대비 6.80:1 · 검정 배경 대비 3.09:1"><b>60</b><span class="hex">763EB0</span></div><div class="sw" style="background:#591b8f;color:#ffffff" title="--color-primary-70  흰 배경 대비 10.62:1 · 검정 배경 대비 1.98:1"><b>70</b><span class="hex">591B8F</span></div><div class="sw" style="background:#3d0d65;color:#ffffff" title="--color-primary-80  흰 배경 대비 14.54:1 · 검정 배경 대비 1.44:1"><b>80</b><span class="hex">3D0D65</span></div><div class="sw" style="background:#25083e;color:#ffffff" title="--color-primary-90  흰 배경 대비 17.75:1 · 검정 배경 대비 1.18:1"><b>90</b><span class="hex">25083E</span></div><div class="sw" style="background:#1c0035;color:#ffffff" title="--color-primary-95  흰 배경 대비 19.08:1 · 검정 배경 대비 1.10:1"><b>95</b><span class="hex">1C0035</span></div></div>
+  </div>
+  <h3>Gray</h3>
+  <div class="palette">
+    <div class="palette-head"><b>Gray — Cool Gray</b><span>0(White) ~ 100(Black) · 95 = Dark 배경</span></div>
+    <div class="ramp" style="--n:13"><div class="sw" style="background:#ffffff;color:#000000" title="--color-gray-0  흰 배경 대비 1.00:1 · 검정 배경 대비 21.00:1"><b>0</b><span class="hex">FFFFFF</span></div><div class="sw" style="background:#f3f5f8;color:#000000" title="--color-gray-5  흰 배경 대비 1.09:1 · 검정 배경 대비 19.23:1"><b>5</b><span class="hex">F3F5F8</span></div><div class="sw" style="background:#e5e8ec;color:#000000" title="--color-gray-10  흰 배경 대비 1.23:1 · 검정 배경 대비 17.09:1"><b>10</b><span class="hex">E5E8EC</span></div><div class="sw" style="background:#cdd1d7;color:#000000" title="--color-gray-20  흰 배경 대비 1.53:1 · 검정 배경 대비 13.70:1"><b>20</b><span class="hex">CDD1D7</span></div><div class="sw" style="background:#b1b8c0;color:#000000" title="--color-gray-30  흰 배경 대비 2.00:1 · 검정 배경 대비 10.49:1"><b>30</b><span class="hex">B1B8C0</span></div><div class="sw" style="background:#8c939e;color:#000000" title="--color-gray-40  흰 배경 대비 3.10:1 · 검정 배경 대비 6.78:1"><b>40</b><span class="hex">8C939E</span></div><div class="sw" style="background:#6e7784;color:#ffffff" title="--color-gray-50  흰 배경 대비 4.53:1 · 검정 배경 대비 4.63:1"><b>50</b><span class="hex">6E7784</span></div><div class="sw" style="background:#57616d;color:#ffffff" title="--color-gray-60  흰 배경 대비 6.30:1 · 검정 배경 대비 3.34:1"><b>60</b><span class="hex">57616D</span></div><div class="sw" style="background:#424d5a;color:#ffffff" title="--color-gray-70  흰 배경 대비 8.60:1 · 검정 배경 대비 2.44:1"><b>70</b><span class="hex">424D5A</span></div><div class="sw" style="background:#2d3643;color:#ffffff" title="--color-gray-80  흰 배경 대비 12.21:1 · 검정 배경 대비 1.72:1"><b>80</b><span class="hex">2D3643</span></div><div class="sw" style="background:#191b21;color:#ffffff" title="--color-gray-90  흰 배경 대비 17.21:1 · 검정 배경 대비 1.22:1"><b>90</b><span class="hex">191B21</span></div><div class="sw" style="background:#0e0f13;color:#ffffff" title="--color-gray-95  흰 배경 대비 19.15:1 · 검정 배경 대비 1.10:1"><b>95</b><span class="hex">0E0F13</span></div><div class="sw" style="background:#000000;color:#ffffff" title="--color-gray-100  흰 배경 대비 21.00:1 · 검정 배경 대비 1.00:1"><b>100</b><span class="hex">000000</span></div></div>
+  </div>
+  <h3>System (KRDS)</h3>
+  <div class="palette">
+    <div class="palette-head"><b>Danger</b><span>오류 · 부적합</span></div>
+    <div class="ramp" style="--n:11"><div class="sw" style="background:#fdefec;color:#000000" title="--color-danger-5  흰 배경 대비 1.12:1 · 검정 배경 대비 18.73:1"><b>5</b><span class="hex">FDEFEC</span></div><div class="sw" style="background:#fcdfd9;color:#000000" title="--color-danger-10  흰 배경 대비 1.26:1 · 검정 배경 대비 16.70:1"><b>10</b><span class="hex">FCDFD9</span></div><div class="sw" style="background:#f7afa1;color:#000000" title="--color-danger-20  흰 배경 대비 1.81:1 · 검정 배경 대비 11.60:1"><b>20</b><span class="hex">F7AFA1</span></div><div class="sw" style="background:#f48771;color:#000000" title="--color-danger-30  흰 배경 대비 2.46:1 · 검정 배경 대비 8.55:1"><b>30</b><span class="hex">F48771</span></div><div class="sw" style="background:#f05f42;color:#000000" title="--color-danger-40  흰 배경 대비 3.27:1 · 검정 배경 대비 6.42:1"><b>40</b><span class="hex">F05F42</span></div><div class="sw key" style="background:#de3412;color:#ffffff" title="--color-danger-50  흰 배경 대비 4.56:1 · 검정 배경 대비 4.61:1"><b>50</b><span class="hex">DE3412</span></div><div class="sw" style="background:#bd2c0f;color:#ffffff" title="--color-danger-60  흰 배경 대비 5.95:1 · 검정 배경 대비 3.53:1"><b>60</b><span class="hex">BD2C0F</span></div><div class="sw" style="background:#8a240f;color:#ffffff" title="--color-danger-70  흰 배경 대비 8.97:1 · 검정 배경 대비 2.34:1"><b>70</b><span class="hex">8A240F</span></div><div class="sw" style="background:#5c180a;color:#ffffff" title="--color-danger-80  흰 배경 대비 13.21:1 · 검정 배경 대비 1.59:1"><b>80</b><span class="hex">5C180A</span></div><div class="sw" style="background:#390d05;color:#ffffff" title="--color-danger-90  흰 배경 대비 17.02:1 · 검정 배경 대비 1.23:1"><b>90</b><span class="hex">390D05</span></div><div class="sw" style="background:#260903;color:#ffffff" title="--color-danger-95  흰 배경 대비 18.70:1 · 검정 배경 대비 1.12:1"><b>95</b><span class="hex">260903</span></div></div>
+  </div>
+  <div class="palette">
+    <div class="palette-head"><b>Warning</b><span>주의</span></div>
+    <div class="ramp" style="--n:11"><div class="sw" style="background:#fff3db;color:#000000" title="--color-warning-5  흰 배경 대비 1.10:1 · 검정 배경 대비 19.10:1"><b>5</b><span class="hex">FFF3DB</span></div><div class="sw" style="background:#ffe0a3;color:#000000" title="--color-warning-10  흰 배경 대비 1.28:1 · 검정 배경 대비 16.44:1"><b>10</b><span class="hex">FFE0A3</span></div><div class="sw" style="background:#ffc95c;color:#000000" title="--color-warning-20  흰 배경 대비 1.53:1 · 검정 배경 대비 13.76:1"><b>20</b><span class="hex">FFC95C</span></div><div class="sw" style="background:#ffb114;color:#000000" title="--color-warning-30  흰 배경 대비 1.82:1 · 검정 배경 대비 11.55:1"><b>30</b><span class="hex">FFB114</span></div><div class="sw" style="background:#c78500;color:#000000" title="--color-warning-40  흰 배경 대비 3.10:1 · 검정 배경 대비 6.78:1"><b>40</b><span class="hex">C78500</span></div><div class="sw key" style="background:#9e6a00;color:#ffffff" title="--color-warning-50  흰 배경 대비 4.65:1 · 검정 배경 대비 4.52:1"><b>50</b><span class="hex">9E6A00</span></div><div class="sw" style="background:#8a5c00;color:#ffffff" title="--color-warning-60  흰 배경 대비 5.81:1 · 검정 배경 대비 3.61:1"><b>60</b><span class="hex">8A5C00</span></div><div class="sw" style="background:#614100;color:#ffffff" title="--color-warning-70  흰 배경 대비 9.27:1 · 검정 배경 대비 2.26:1"><b>70</b><span class="hex">614100</span></div><div class="sw" style="background:#422c00;color:#ffffff" title="--color-warning-80  흰 배경 대비 13.19:1 · 검정 배경 대비 1.59:1"><b>80</b><span class="hex">422C00</span></div><div class="sw" style="background:#2e1f00;color:#ffffff" title="--color-warning-90  흰 배경 대비 16.00:1 · 검정 배경 대비 1.31:1"><b>90</b><span class="hex">2E1F00</span></div><div class="sw" style="background:#241800;color:#ffffff" title="--color-warning-95  흰 배경 대비 17.42:1 · 검정 배경 대비 1.21:1"><b>95</b><span class="hex">241800</span></div></div>
+  </div>
+  <div class="palette">
+    <div class="palette-head"><b>Success</b><span>정상 · 적합</span></div>
+    <div class="ramp" style="--n:11"><div class="sw" style="background:#eaf6ec;color:#000000" title="--color-success-5  흰 배경 대비 1.11:1 · 검정 배경 대비 18.89:1"><b>5</b><span class="hex">EAF6EC</span></div><div class="sw" style="background:#d8eedd;color:#000000" title="--color-success-10  흰 배경 대비 1.22:1 · 검정 배경 대비 17.19:1"><b>10</b><span class="hex">D8EEDD</span></div><div class="sw" style="background:#a9dab4;color:#000000" title="--color-success-20  흰 배경 대비 1.57:1 · 검정 배경 대비 13.37:1"><b>20</b><span class="hex">A9DAB4</span></div><div class="sw" style="background:#7ec88e;color:#000000" title="--color-success-30  흰 배경 대비 1.99:1 · 검정 배경 대비 10.54:1"><b>30</b><span class="hex">7EC88E</span></div><div class="sw" style="background:#3fa654;color:#000000" title="--color-success-40  흰 배경 대비 3.09:1 · 검정 배경 대비 6.79:1"><b>40</b><span class="hex">3FA654</span></div><div class="sw key" style="background:#228738;color:#ffffff" title="--color-success-50  흰 배경 대비 4.57:1 · 검정 배경 대비 4.59:1"><b>50</b><span class="hex">228738</span></div><div class="sw" style="background:#267337;color:#ffffff" title="--color-success-60  흰 배경 대비 5.85:1 · 검정 배경 대비 3.59:1"><b>60</b><span class="hex">267337</span></div><div class="sw" style="background:#285d33;color:#ffffff" title="--color-success-70  흰 배경 대비 7.77:1 · 검정 배경 대비 2.70:1"><b>70</b><span class="hex">285D33</span></div><div class="sw" style="background:#1f4727;color:#ffffff" title="--color-success-80  흰 배경 대비 10.56:1 · 검정 배경 대비 1.99:1"><b>80</b><span class="hex">1F4727</span></div><div class="sw" style="background:#122b18;color:#ffffff" title="--color-success-90  흰 배경 대비 15.17:1 · 검정 배경 대비 1.38:1"><b>90</b><span class="hex">122B18</span></div><div class="sw" style="background:#0e2012;color:#ffffff" title="--color-success-95  흰 배경 대비 17.02:1 · 검정 배경 대비 1.23:1"><b>95</b><span class="hex">0E2012</span></div></div>
+  </div>
+  <div class="palette">
+    <div class="palette-head"><b>Information</b><span>안내</span></div>
+    <div class="ramp" style="--n:11"><div class="sw" style="background:#e7f4fe;color:#000000" title="--color-information-5  흰 배경 대비 1.12:1 · 검정 배경 대비 18.77:1"><b>5</b><span class="hex">E7F4FE</span></div><div class="sw" style="background:#d3ebfd;color:#000000" title="--color-information-10  흰 배경 대비 1.23:1 · 검정 배경 대비 17.07:1"><b>10</b><span class="hex">D3EBFD</span></div><div class="sw" style="background:#9ed2fa;color:#000000" title="--color-information-20  흰 배경 대비 1.61:1 · 검정 배경 대비 13.05:1"><b>20</b><span class="hex">9ED2FA</span></div><div class="sw" style="background:#5fb5f7;color:#000000" title="--color-information-30  흰 배경 대비 2.22:1 · 검정 배경 대비 9.44:1"><b>30</b><span class="hex">5FB5F7</span></div><div class="sw" style="background:#2098f3;color:#000000" title="--color-information-40  흰 배경 대비 3.07:1 · 검정 배경 대비 6.85:1"><b>40</b><span class="hex">2098F3</span></div><div class="sw key" style="background:#0b78cb;color:#ffffff" title="--color-information-50  흰 배경 대비 4.60:1 · 검정 배경 대비 4.56:1"><b>50</b><span class="hex">0B78CB</span></div><div class="sw" style="background:#096ab3;color:#ffffff" title="--color-information-60  흰 배경 대비 5.64:1 · 검정 배경 대비 3.72:1"><b>60</b><span class="hex">096AB3</span></div><div class="sw" style="background:#085691;color:#ffffff" title="--color-information-70  흰 배경 대비 7.64:1 · 검정 배경 대비 2.75:1"><b>70</b><span class="hex">085691</span></div><div class="sw" style="background:#053961;color:#ffffff" title="--color-information-80  흰 배경 대비 11.90:1 · 검정 배경 대비 1.76:1"><b>80</b><span class="hex">053961</span></div><div class="sw" style="background:#03253f;color:#ffffff" title="--color-information-90  흰 배경 대비 15.67:1 · 검정 배경 대비 1.34:1"><b>90</b><span class="hex">03253F</span></div><div class="sw" style="background:#021a2c;color:#ffffff" title="--color-information-95  흰 배경 대비 17.70:1 · 검정 배경 대비 1.19:1"><b>95</b><span class="hex">021A2C</span></div></div>
+  </div>
+
+  <h2>Magic Number</h2>
+  <p>매직넘버는 두 색상 단계의 차이로 명도 대비를 보장하는 규칙입니다. 단계 차이만 확인하면 별도 계산 없이 대비 기준 충족 여부를 판단할 수 있습니다.</p>
+  <table>
+    <thead><tr><th>단계 차이</th><th>최소 대비</th><th>적용 예</th></tr></thead>
+    <tbody>
+      <tr><td>40</td><td>3 : 1</td><td>아이콘, 큰 텍스트, UI 구성 요소</td></tr>
+      <tr><td>50</td><td>4.5 : 1</td><td>본문 텍스트, 입력창 보더 (예: gray-0 배경 + primary-50)</td></tr>
+      <tr><td>70</td><td>7 : 1</td><td>강화 기준(AAA) 본문</td></tr>
+      <tr><td>90</td><td>15 : 1</td><td>고대비 본문</td></tr>
+    </tbody>
+  </table>
+  <p>DOOV 팔레트 6종(Primary, Gray, System 4종) 전체에 대해 모든 단계 조합을 검증했으며 위반 사항은 없습니다. 색상을 추가하거나 수정할 때도 이 규칙을 충족해야 합니다.</p>
+
+  <h2>Semantic Tokens</h2>
+  <p>화면 코드에서는 아래 시맨틱 토큰만 사용합니다. 모드를 전환하면 같은 토큰이 Light·Dark 값으로 자동 전환됩니다.</p>
+  <table>
+    <thead><tr><th>Token</th><th>Light</th><th>Dark</th><th>용도</th></tr></thead>
+    <tbody>
+      <tr><th colspan="4">배경 · 표면</th></tr><tr><td><code>--color-bg</code></td><td><span class="token-chip"><i style="background:#ffffff"></i>gray-0</span></td><td><span class="token-chip"><i style="background:#0e0f13"></i>gray-95</span></td><td>페이지 배경</td></tr><tr><td><code>--color-bg-subtle</code></td><td><span class="token-chip"><i style="background:#f3f5f8"></i>gray-5</span></td><td><span class="token-chip"><i style="background:#191b21"></i>gray-90</span></td><td>사이드바·패널·구역 배경</td></tr><tr><td><code>--color-surface</code></td><td><span class="token-chip"><i style="background:#ffffff"></i>gray-0</span></td><td><span class="token-chip"><i style="background:#191b21"></i>gray-90</span></td><td>카드·입력창 등 표면</td></tr><tr><td><code>--color-surface-elevated</code></td><td><span class="token-chip"><i style="background:#ffffff"></i>gray-0</span></td><td><span class="token-chip"><i style="background:#2d3643"></i>gray-80</span></td><td>회색 면 위에 올라가는 밝은 표면 (KPI 카드, 세그먼트 선택 칸)</td></tr><tr><td><code>--color-surface-muted</code></td><td><span class="token-chip"><i style="background:#e5e8ec"></i>gray-10</span></td><td><span class="token-chip"><i style="background:#2d3643"></i>gray-80</span></td><td>비활성 표면, 코드·태그 배경</td></tr><tr><td><code>--color-surface-inverse</code></td><td><span class="token-chip"><i style="background:#191b21"></i>gray-90</span></td><td><span class="token-chip"><i style="background:#e5e8ec"></i>gray-10</span></td><td>반전 표면(툴팁 등)</td></tr><tr><th colspan="4">텍스트</th></tr><tr><td><code>--color-text-bolder</code></td><td><span class="token-chip"><i style="background:#0e0f13"></i>gray-95</span></td><td><span class="token-chip"><i style="background:#f3f5f8"></i>gray-5</span></td><td>제목, 핵심 텍스트</td></tr><tr><td><code>--color-text-basic</code></td><td><span class="token-chip"><i style="background:#191b21"></i>gray-90</span></td><td><span class="token-chip"><i style="background:#e5e8ec"></i>gray-10</span></td><td>기본 본문</td></tr><tr><td><code>--color-text-subtle</code></td><td><span class="token-chip"><i style="background:#424d5a"></i>gray-70</span></td><td><span class="token-chip"><i style="background:#cdd1d7"></i>gray-20</span></td><td>보조 본문, 설명</td></tr><tr><td><code>--color-text-assistive</code></td><td><span class="token-chip"><i style="background:#57616d"></i>gray-60</span></td><td><span class="token-chip"><i style="background:#b1b8c0"></i>gray-30</span></td><td>캡션, 메타 정보, 플레이스홀더</td></tr><tr><td><code>--color-text-disabled</code></td><td><span class="token-chip"><i style="background:#8c939e"></i>gray-40</span></td><td><span class="token-chip"><i style="background:#57616d"></i>gray-60</span></td><td>비활성 텍스트</td></tr><tr><td><code>--color-text-primary</code></td><td><span class="token-chip"><i style="background:#763eb0"></i>primary-60</span></td><td><span class="token-chip"><i style="background:#c69bfd"></i>primary-30</span></td><td>Primary 강조 텍스트, 활성 메뉴</td></tr><tr><td><code>--color-text-inverse</code></td><td><span class="token-chip"><i style="background:#ffffff"></i>gray-0</span></td><td><span class="token-chip"><i style="background:#0e0f13"></i>gray-95</span></td><td>반전 표면 위 텍스트</td></tr><tr><td><code>--color-text-inverse-static</code></td><td><span class="token-chip"><i style="background:#ffffff"></i>gray-0</span></td><td><span class="token-chip"><i style="background:#ffffff"></i>gray-0</span></td><td>Primary 버튼 위 텍스트(모드 무관 흰색)</td></tr><tr><th colspan="4">보더 · 구분선</th></tr><tr><td><code>--color-border</code></td><td><span class="token-chip"><i style="background:#cdd1d7"></i>gray-20</span></td><td><span class="token-chip"><i style="background:#2d3643"></i>gray-80</span></td><td>표 헤더 하단선 등 일반 보더</td></tr><tr><td><code>--color-border-light</code></td><td><span class="token-chip"><i style="background:#e5e8ec"></i>gray-10</span></td><td><span class="token-chip"><i style="background:#191b21"></i>gray-90</span></td><td>미리보기 영역 등 약한 보더</td></tr><tr><td><code>--color-border-input</code></td><td><span class="token-chip"><i style="background:#6e7784"></i>gray-50</span></td><td><span class="token-chip"><i style="background:#8c939e"></i>gray-40</span></td><td>입력창 보더 (매직넘버 50)</td></tr><tr><td><code>--color-divider</code></td><td><span class="token-chip"><i style="background:#e5e8ec"></i>gray-10</span></td><td><span class="token-chip"><i style="background:#191b21"></i>gray-90</span></td><td>구분선</td></tr><tr><td><code>--color-border-primary</code></td><td><span class="token-chip"><i style="background:#925acf"></i>primary-50</span></td><td><span class="token-chip"><i style="background:#a770e7"></i>primary-40</span></td><td>포커스 링, 선택 표시</td></tr><tr><th colspan="4">아이콘</th></tr><tr><td><code>--color-icon</code></td><td><span class="token-chip"><i style="background:#2d3643"></i>gray-80</span></td><td><span class="token-chip"><i style="background:#f3f5f8"></i>gray-5</span></td><td>기본 아이콘</td></tr><tr><td><code>--color-icon-subtle</code></td><td><span class="token-chip"><i style="background:#57616d"></i>gray-60</span></td><td><span class="token-chip"><i style="background:#b1b8c0"></i>gray-30</span></td><td>보조 아이콘</td></tr><tr><td><code>--color-icon-primary</code></td><td><span class="token-chip"><i style="background:#925acf"></i>primary-50</span></td><td><span class="token-chip"><i style="background:#c69bfd"></i>primary-30</span></td><td>Primary 아이콘</td></tr><tr><td><code>--color-icon-disabled</code></td><td><span class="token-chip"><i style="background:#8c939e"></i>gray-40</span></td><td><span class="token-chip"><i style="background:#57616d"></i>gray-60</span></td><td>비활성 아이콘</td></tr><tr><th colspan="4">버튼 · 상호작용</th></tr><tr><td><code>--color-button-primary-fill</code></td><td><span class="token-chip"><i style="background:#925acf"></i>primary-50</span></td><td><span class="token-chip"><i style="background:#925acf"></i>primary-50</span></td><td>주요 버튼 (Purple 채움)</td></tr><tr><td><code>--color-button-primary-fill-hover</code></td><td><span class="token-chip"><i style="background:#763eb0"></i>primary-60</span></td><td><span class="token-chip"><i style="background:#763eb0"></i>primary-60</span></td><td>주요 버튼 hover</td></tr><tr><td><code>--color-button-primary-fill-pressed</code></td><td><span class="token-chip"><i style="background:#591b8f"></i>primary-70</span></td><td><span class="token-chip"><i style="background:#591b8f"></i>primary-70</span></td><td>주요 버튼 pressed</td></tr><tr><td><code>--color-button-secondary-fill</code></td><td><span class="token-chip"><i style="background:#e5e8ec"></i>gray-10</span></td><td><span class="token-chip"><i style="background:#2d3643"></i>gray-80</span></td><td>보조 버튼 (회색 채움)</td></tr><tr><td><code>--color-button-secondary-fill-hover</code></td><td><span class="token-chip"><i style="background:#cdd1d7"></i>gray-20</span></td><td><span class="token-chip"><i style="background:#424d5a"></i>gray-70</span></td><td>보조 버튼 hover</td></tr><tr><td><code>--color-button-secondary-fill-pressed</code></td><td><span class="token-chip"><i style="background:#b1b8c0"></i>gray-30</span></td><td><span class="token-chip"><i style="background:#57616d"></i>gray-60</span></td><td>보조 버튼 pressed</td></tr><tr><td><code>--color-action-hover</code></td><td><span class="token-chip"><i style="background:#f3f5f8"></i>gray-5</span></td><td><span class="token-chip"><i style="background:#2d3643"></i>gray-80</span></td><td>메뉴·리스트 hover 배경 (무채색)</td></tr><tr><td><code>--color-action-pressed</code></td><td><span class="token-chip"><i style="background:#e5e8ec"></i>gray-10</span></td><td><span class="token-chip"><i style="background:#424d5a"></i>gray-70</span></td><td>메뉴·리스트 pressed 배경 (무채색)</td></tr><tr><td><code>--color-action-selected</code></td><td><span class="token-chip"><i style="background:#f3f5f8"></i>gray-5</span></td><td><span class="token-chip"><i style="background:#2d3643"></i>gray-80</span></td><td>메뉴·리스트 선택 배경 (무채색)</td></tr><tr><td><code>--color-link</code></td><td><span class="token-chip"><i style="background:#925acf"></i>primary-50</span></td><td><span class="token-chip"><i style="background:#c69bfd"></i>primary-30</span></td><td>링크</td></tr><tr><td><code>--color-link-hover</code></td><td><span class="token-chip"><i style="background:#763eb0"></i>primary-60</span></td><td><span class="token-chip"><i style="background:#dac2ff"></i>primary-20</span></td><td>링크 hover</td></tr><tr><th colspan="4">시스템 상태</th></tr><tr><td><code>--color-danger-icon</code></td><td><span class="token-chip"><i style="background:#de3412"></i>danger-50</span></td><td><span class="token-chip"><i style="background:#f7afa1"></i>danger-20</span></td><td>오류·부적합 아이콘</td></tr><tr><td><code>--color-danger-text</code></td><td><span class="token-chip"><i style="background:#bd2c0f"></i>danger-60</span></td><td><span class="token-chip"><i style="background:#f7afa1"></i>danger-20</span></td><td>오류·부적합 텍스트</td></tr><tr><td><code>--color-danger-surface</code></td><td><span class="token-chip"><i style="background:#fdefec"></i>danger-5</span></td><td><span class="token-chip"><i style="background:#260903"></i>danger-95</span></td><td>오류·부적합 배경</td></tr><tr><td><code>--color-danger-border</code></td><td><span class="token-chip"><i style="background:#fcdfd9"></i>danger-10</span></td><td><span class="token-chip"><i style="background:#390d05"></i>danger-90</span></td><td>오류·부적합 보더</td></tr><tr><td><code>--color-warning-icon</code></td><td><span class="token-chip"><i style="background:#9e6a00"></i>warning-50</span></td><td><span class="token-chip"><i style="background:#ffc95c"></i>warning-20</span></td><td>주의 아이콘</td></tr><tr><td><code>--color-warning-text</code></td><td><span class="token-chip"><i style="background:#8a5c00"></i>warning-60</span></td><td><span class="token-chip"><i style="background:#ffc95c"></i>warning-20</span></td><td>주의 텍스트</td></tr><tr><td><code>--color-warning-surface</code></td><td><span class="token-chip"><i style="background:#fff3db"></i>warning-5</span></td><td><span class="token-chip"><i style="background:#241800"></i>warning-95</span></td><td>주의 배경</td></tr><tr><td><code>--color-warning-border</code></td><td><span class="token-chip"><i style="background:#ffe0a3"></i>warning-10</span></td><td><span class="token-chip"><i style="background:#2e1f00"></i>warning-90</span></td><td>주의 보더</td></tr><tr><td><code>--color-success-icon</code></td><td><span class="token-chip"><i style="background:#228738"></i>success-50</span></td><td><span class="token-chip"><i style="background:#a9dab4"></i>success-20</span></td><td>정상·적합 아이콘</td></tr><tr><td><code>--color-success-text</code></td><td><span class="token-chip"><i style="background:#267337"></i>success-60</span></td><td><span class="token-chip"><i style="background:#a9dab4"></i>success-20</span></td><td>정상·적합 텍스트</td></tr><tr><td><code>--color-success-surface</code></td><td><span class="token-chip"><i style="background:#eaf6ec"></i>success-5</span></td><td><span class="token-chip"><i style="background:#0e2012"></i>success-95</span></td><td>정상·적합 배경</td></tr><tr><td><code>--color-success-border</code></td><td><span class="token-chip"><i style="background:#d8eedd"></i>success-10</span></td><td><span class="token-chip"><i style="background:#122b18"></i>success-90</span></td><td>정상·적합 보더</td></tr><tr><td><code>--color-information-icon</code></td><td><span class="token-chip"><i style="background:#0b78cb"></i>information-50</span></td><td><span class="token-chip"><i style="background:#9ed2fa"></i>information-20</span></td><td>안내 아이콘</td></tr><tr><td><code>--color-information-text</code></td><td><span class="token-chip"><i style="background:#096ab3"></i>information-60</span></td><td><span class="token-chip"><i style="background:#9ed2fa"></i>information-20</span></td><td>안내 텍스트</td></tr><tr><td><code>--color-information-surface</code></td><td><span class="token-chip"><i style="background:#e7f4fe"></i>information-5</span></td><td><span class="token-chip"><i style="background:#021a2c"></i>information-95</span></td><td>안내 배경</td></tr><tr><td><code>--color-information-border</code></td><td><span class="token-chip"><i style="background:#d3ebfd"></i>information-10</span></td><td><span class="token-chip"><i style="background:#03253f"></i>information-90</span></td><td>안내 보더</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Gradients &amp; Shadows</h2>
+  <p>깊이감과 세련된 인상을 위해 Purple 계열 그라데이션과 부드러운 그림자를 토큰으로 정의합니다. 모두 Light·Dark에서 자동 전환됩니다.</p>
+  <div class="grid-3">
+    <div class="swatch"><div class="chip" style="background:var(--gradient-primary)"></div><div class="info"><b>Primary</b><code>--gradient-primary</code><br>주요 버튼</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--gradient-aurora)"></div><div class="info"><b>Aurora</b><code>--gradient-aurora</code><br>카드 내부 배너·일러스트</div></div>
+    <div class="swatch"><div class="chip" style="display:grid;place-items:center;background:var(--color-surface)"><span class="gradient-text" style="font-size:var(--font-size-display);font-weight:var(--font-weight-bold)">DOOV</span></div><div class="info"><b>Text</b><code>--gradient-text</code><br>대형 제목 강조 (Display)</div></div>
+  </div>
+  <table>
+    <thead><tr><th>Token</th><th>용도</th></tr></thead>
+    <tbody>
+      <tr><td><code>--gradient-surface</code></td><td>예시 영역 등 카드 내부 표면 (흰색 → gray-5)</td></tr>
+      <tr><td><code>--shadow-sm</code> / <code>--shadow-md</code> / <code>--shadow-lg</code></td><td>카드 기본 / hover·히어로 / 모달</td></tr>
+      <tr><td><code>--shadow-primary</code></td><td>주요 버튼·아이콘 타일의 Purple 글로우</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Modes</h2>
+  <p><strong>Light</strong>는 흰 배경의 기본 모드이며, <strong>Dark</strong>는 검사 화면 등 장시간 영상·이미지를 확인하는 환경에 사용합니다.
+  Dark 배경(gray-95)은 기존 검사 화면의 배경 톤을 기준으로 정의했습니다. 주요 버튼은 두 모드 모두 Purple로 채워 어두운 화면에서도 행동 지점이 분명하게 보이도록 합니다.</p>
+  <div class="mode-compare">
+    <div class="mock theme-light">
+      <p class="mock-label">LIGHT</p>
+      <div class="panel">
+        <p class="panel-title">NO.1 검사 결과</p>
+        <p class="panel-sub">Score 0.71 · 1.png · dino-anomaly</p>
+        <div class="row"><span class="seg on">원본</span><span class="seg">반전</span><span class="seg">CLAHE</span><span class="seg">Sobel</span></div>
+        <div class="input">모델 선택</div>
+        <div class="verdicts"><span class="vbtn pass">적합</span><span class="vbtn fail">부적합</span><span class="vbtn hold">보류</span></div>
+        <button class="primary-btn" type="button">상세보기</button>
+        <div class="meta"><span><i style="background:var(--color-success-icon)"></i>적합 0</span><span><i style="background:var(--color-danger-icon)"></i>부적합 0</span><span><i style="background:var(--color-icon-subtle)"></i>보류 1</span></div>
+      </div>
+    </div>
+    <div class="mock theme-dark">
+      <p class="mock-label">DARK</p>
+      <div class="panel">
+        <p class="panel-title">NO.1 검사 결과</p>
+        <p class="panel-sub">Score 0.71 · 1.png · dino-anomaly</p>
+        <div class="row"><span class="seg on">원본</span><span class="seg">반전</span><span class="seg">CLAHE</span><span class="seg">Sobel</span></div>
+        <div class="input">모델 선택</div>
+        <div class="verdicts"><span class="vbtn pass">적합</span><span class="vbtn fail">부적합</span><span class="vbtn hold">보류</span></div>
+        <button class="primary-btn" type="button">상세보기</button>
+        <div class="meta"><span><i style="background:var(--color-success-icon)"></i>적합 0</span><span><i style="background:var(--color-danger-icon)"></i>부적합 0</span><span><i style="background:var(--color-icon-subtle)"></i>보류 1</span></div>
+      </div>
+    </div>
+  </div>
+  <table>
+    <thead><tr><th>적용 방법</th><th>코드</th></tr></thead>
+    <tbody>
+      <tr><td>전체 Dark</td><td><code>&lt;html data-theme="dark"&gt;</code></td></tr>
+      <tr><td>특정 영역만 Light / Dark</td><td><code>class="theme-light"</code> / <code>class="theme-dark"</code></td></tr>
+    </tbody>
+  </table>
+  <h3>Elevation</h3>
+  <p>Light는 흰 표면과 회색 표면을 번갈아 쌓고 보더로 구분합니다. Dark는 레이어가 쌓일수록 밝아지도록 표현합니다.</p>
+  <table>
+    <thead><tr><th>레이어</th><th>Light</th><th>Dark</th></tr></thead>
+    <tbody>
+      <tr><td>페이지 배경</td><td>gray-0</td><td>gray-95</td></tr>
+      <tr><td>패널 · 사이드바</td><td>gray-5</td><td>gray-90</td></tr>
+      <tr><td>카드 · 입력창</td><td>gray-0</td><td>gray-90</td></tr>
+      <tr><td>비활성 · 태그</td><td>gray-10</td><td>gray-80</td></tr>
+    </tbody>
+  </table>
+
+  <h2>System Colors</h2>
+  <p>시스템 색상은 KRDS 값을 그대로 사용하며, 요소별 적용 단계도 KRDS 규칙을 따릅니다. DOOV에서는 컬러 배경 면 대신 <strong>회색 면 + 상태색 아이콘·라벨</strong>로 표현하는 것을 기본으로 합니다. 상태색 <code>surface</code> 토큰은 즉시 조치가 필요한 치명적 경고에만 제한적으로 사용합니다. 색상만으로 상태를 전달하지 않고 반드시 텍스트나 아이콘을 함께 표시합니다.</p>
+  <table>
+    <thead><tr><th>요소</th><th>Light</th><th>Dark</th><th>Token</th></tr></thead>
+    <tbody>
+      <tr><td>아이콘</td><td>50</td><td>20</td><td><code>--color-{status}-icon</code></td></tr>
+      <tr><td>텍스트</td><td>60</td><td>20</td><td><code>--color-{status}-text</code></td></tr>
+      <tr><td>배경 (제한적 사용)</td><td>5</td><td>95</td><td><code>--color-{status}-surface</code></td></tr>
+      <tr><td>보더</td><td>10</td><td>90</td><td><code>--color-{status}-border</code></td></tr>
+    </tbody>
+  </table>
+  <div class="mode-compare">
+    <div class="mock theme-light"><div class="alerts">
+      <div class="alert danger"><span class="ic">!</span><div><b>부적합</b> · 결함 영역이 감지되었습니다.</div></div>
+      <div class="alert warning"><span class="ic">!</span><div><b>주의</b> · 신뢰도가 기준(0.5) 미만입니다.</div></div>
+      <div class="alert success"><span class="ic">✓</span><div><b>적합</b> · 검사가 정상 완료되었습니다.</div></div>
+      <div class="alert information"><span class="ic">i</span><div><b>안내</b> · 모델이 v2.3으로 업데이트되었습니다.</div></div>
+    </div></div>
+    <div class="mock theme-dark"><div class="alerts">
+      <div class="alert danger"><span class="ic">!</span><div><b>부적합</b> · 결함 영역이 감지되었습니다.</div></div>
+      <div class="alert warning"><span class="ic">!</span><div><b>주의</b> · 신뢰도가 기준(0.5) 미만입니다.</div></div>
+      <div class="alert success"><span class="ic">✓</span><div><b>적합</b> · 검사가 정상 완료되었습니다.</div></div>
+      <div class="alert information"><span class="ic">i</span><div><b>안내</b> · 모델이 v2.3으로 업데이트되었습니다.</div></div>
+    </div></div>
+  </div>
+  <h3>검사 판정 매핑</h3>
+  <table>
+    <thead><tr><th>판정</th><th>색상</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr><td>적합</td><td>Success</td><td rowspan="2">적록 색각이상 사용자는 두 색을 구분하기 어려우므로 반드시 텍스트("적합", "부적합")를 병기합니다.</td></tr>
+      <tr><td>부적합</td><td>Danger</td></tr>
+      <tr><td>보류</td><td>Gray (<code>text-subtle</code>, <code>border</code>)</td><td>판정 전 중립 상태</td></tr>
+      <tr><td>주의</td><td>Warning</td><td>신뢰도 미달, 재검사 권장 등</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Usage</h2>
+  <h3>색상 비율</h3>
+  <p>KRDS의 60-30-10 원칙을 DOOV 기준에 맞춰 적용합니다. 60%는 흰 배경, 30%는 쿨 그레이(텍스트·회색 면·보조 버튼), 10% 이하만 Purple입니다.</p>
+  <div class="ratio">
+    <div style="flex:60;background:var(--color-bg);color:var(--color-text-subtle);box-shadow:inset 0 0 0 1px var(--color-border-light)">60 흰 배경</div>
+    <div style="flex:30;background:var(--color-bg-subtle);color:var(--color-text-basic)">30 쿨 그레이</div>
+    <div style="flex:10;background:var(--color-button-primary-fill);color:var(--color-text-inverse-static)">10 Purple</div>
+  </div>
+  <h3>규칙</h3>
+  <ol>
+    <li>화면 코드에는 시맨틱 토큰만 사용합니다. Primitive 토큰과 HEX 값을 직접 쓰지 않습니다.</li>
+    <li>포인트 컬러는 Purple 하나만 사용합니다. 연한 보라 등 컬러 배경 면을 만들지 않고, 묶음은 회색 면으로 표현합니다.</li>
+    <li>상호작용 상태(hover, pressed)는 같은 색조 안에서 단계를 점진적으로 올립니다. 상태 값에 다른 색조를 섞지 않습니다.</li>
+    <li>disabled 상태에 투명도(alpha)를 사용하지 않고 <code>text-disabled</code>, <code>icon-disabled</code> 토큰을 사용합니다.</li>
+    <li>배경과 비슷한 5, 95 단계는 텍스트와 아이콘에 사용하지 않습니다.</li>
+    <li>본문은 4.5:1, 아이콘과 입력창 보더는 3:1 이상의 대비를 확보합니다.</li>
+    <li>팔레트에 없는 새 색상은 재사용성이 높은 경우에만 매직넘버 규칙을 충족하도록 추가합니다.</li>
+  </ol>
+</main>
+</body>
+</html>
